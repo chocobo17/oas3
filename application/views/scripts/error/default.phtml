@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>An error has occured</title>
+	<style type="text/css">
+	</style>
+	<script type="text/javascript">
+	$(function(){
+	});
+	</script>
+</head>
+
+<body>
+	<div id="content">
+		<h1>錯誤發生時，</h1>
+		<h2 class="err-title"></h2>
+		<h2 class="err-title">錯誤訊息：</h2>
+        	<div class="err-msg"><?php ($this->content)?Zend_Debug::dump($this->content):"未有事件。";?></div>
+		<h2 class="err-title">事件發生呼叫堆疊：</h2>
+			<div class="err-msg"><?php ($this->trace)?Zend_Debug::dump($this->trace):"未有呼叫過程。";?></div>
+		<h2 class="err-title">使用者提供參數：</h2>
+			<div class="err-msg"><?php ($this->request)?Zend_Debug::dump($this->request):"未有參數值。";?></div>
+		<h2 class="err-title">系統環境變數：</h2>
+			<div class="err-msg"><?php Zend_Debug::dump($this->env);?></div>
+	</div>
+</body>
+</html>

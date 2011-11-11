@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application>
+	<configure>
+		<!--寫入DB欄位key格式:[key]moduleName_[key]id_[item]name-->
+		<key moduleName="APPLICATION" id="application1" blockname="系統基本設定" item="1">
+			<item label="網站系統名稱" description="設定網站顯示名稱"
+				  name="SITENAME" default=":apps_configure" 
+				  type="text" sizelength="40" />
+		</key>
+	</configure>
+	
+	<bootstrap>
+		<key moduleName="APPLICATION" item="1" >
+			<item name="SITENAME" default="網路組內行政系統" description="設定網站顯示名稱資訊。" />
+			<item name="VERSION" default="3.0" description="目前系統使用版本。" />
+		</key>
+	</bootstrap>
+	
+	<role>
+		<actor parentName="" name="訪客" description="系統預設瀏覽者角色。" />
+		<actor parentName="訪客" name="會員" description="預設網站使用者角色。" />
+		<actor parentName="" name="超級管理者" description="系統預設管理者角色。" />
+		<!-- 判斷若name 為NULL則略過。  -->
+		<actor parentName="" name="" description="" />
+	</role>
+	
+	<install>
+		<block moduleName="APPLICATION" title="設定系統資訊">
+			<item label="網站名稱" name="SITENAME" default=""
+				  type="text" sizelength="30" 
+				  description="設定網站顯示名稱" />
+			<item label="系統版本" name="VERSION" default="V0.5"
+				  type="text" sizelength="5" readonly="1" 
+				  description="設定網站顯示名稱" />
+			<item label="資料庫伺服器" name="DBHOSTNAME" default="localhost" 
+				  type="text" sizelength="30"
+				  description="設定系統資料庫伺服器主機位址，通常設定本機位址(localhost)" />
+			<item label="資料庫帳號" name="DBUSERNAME" default="" 
+				  type="text" sizelength="20"
+				  description="設定系統資料庫連線使用者名稱" />
+			<item label="資料庫密碼" name="DBPASSWD" default="" 
+				  type="password" sizelength="20"
+				  description="設定系統資料庫連線使用者密碼" />
+		</block>
+		<!--設定預設最高管理權限帳號！-->	
+	</install>
+	
+	
+	<!--若無blockname則此key不再後台顯示提供設定！！-->
+	<!--以下定義使用configure.xml來設定初始化參數使用的欄位顯示格式
+		1. 目前使用類型：text、textarea、select、checkbox、radio、image file。
+	-->
+	<tmemplate moduleName="application" id="template" blockname="" item="3">
+		<!--針對text-input設定格式-->
+		<item label="欄位標籤" description="設定系統伺服器主機位址" 
+			  name="fieldname" default="預設值" 
+			  sizelength="20" type="text" />
+		<!--針對textarea設定格式-->
+		<item label="欄位標籤" description="設定顯示在每張單據上的公司名稱。"
+			  name="fieldname" default="預設值" 
+			  type="textarea" rows="5" cols="40" validate="custom[onlyNumber]" />
+		<!--針對selet、checkbox、radio類型設定格式-->
+		<item label="欄位標籤" description="設定"
+			  name="fieldname" default="optionsIndex" 
+			  type="[select,checkbox,radio]" options="3" radioId="0,1,2">
+			  <options value="預設值" text="顯示字串" />
+			  <options value="預設值" text="顯示字串" />
+			  <options value="預設值" text="顯示字串" />
+		</item>
+	</tmemplate>
+</application>

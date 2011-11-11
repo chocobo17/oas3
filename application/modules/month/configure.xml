@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configdata>
+<configure>
+	<key moduleName="USER" id="USER" blockname="configure_block" item="0">
+		<item label="" name="" sizelength="" type="" default="" description="" />
+	</key>
+</configure>
+<bootstrap>
+	<key moduleName="USER" id="USER" item="0" >
+		<item name="INITIAL_ROLENAME" default="會員" description="設定會員註冊後預設給予身份名稱。" />
+	</key>
+</bootstrap>
+<!-- 後台選單資源設計 -->
+<access>
+	<menu layer="" weight="" key="#" moduleName="" parentName="" 
+		  name="" description="" />
+</access>
+</configdata>	

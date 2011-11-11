@@ -1,0 +1,5 @@
+﻿@charset "utf-8";
+
+.tinyTip						{ width: 325px; padding: 17px 0px 0px 0px; display: block; background: url(images/tinyTip-top.png) 0px 0px no-repeat; }
+.tinyTip .content				{ padding: 0px 15px 0px 15px; font-size: 14px; font-family: "Lucida Sans Unicode"; color: #010101;  background: url(images/tinyTip-content.png) 0px 0px repeat-y; }
+.tinyTip .bottom				{ height: 47px; background: url(images/tinyTip-bottom.png) 0px 0px no-repeat; font: 0px/0px sans-serif; }
