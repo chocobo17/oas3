@@ -11,3 +11,657 @@ $(function(){
 	<br/>
 	功能描述：xxx
 </div>
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+        <title>線上行政系統--月報模組 v2.6b</title>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<meta content="IE=8" http-equiv="X-UA-Compatible">
+		
+		<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/css/month/module.css" type="text/css" rel="stylesheet">
+		<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/countdown/jquery.countdown.css" type="text/css" rel="stylesheet">
+		<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/thickbox/thickbox.css" type="text/css" rel="stylesheet">
+		<link charset="utf-8" type="text/css" href="/oas/theme/js/jplug/monthpicker/monthpicker.css" rel="stylesheet">
+		<link href="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/datepicker.css" rel="stylesheet">
+		
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/dateFormatFix.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jquery132.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var URL = 'http://divisionwork.cc.scu.edu.tw/oas/';
+			var nowMain = '斷線紀錄';
+		</script>
+		<!--<script type="text/javascript" src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/clock.js"></script>-->
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/jquery.dump.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/countdown/jquery.countdown.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/thickbox/thickbox.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/monthpicker/monthpicker.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/date.js" type="text/javascript"></script>
+		<!--[if IE]><script type="text/javascript" src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/jquery.bgiframe.js"></script><![endif]-->
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/jquery.datepicker.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/month/monthpicker.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/month/remove_item.js" type="text/javascript"></script>
+		<script type="text/javascript">
+
+//			tm_tmp = '1321251274';
+//			tm = parseInt(tm_tmp)*1000+60000000;
+//			var time = new Date(tm);
+			
+			Date.firstDayOfWeek = 0;
+			Date.format = 'yyyy-mm-dd';
+			var date = new Date();
+			//設定編輯或彙整顯示年月份
+			
+			var theyear=parseInt('2011');
+			var themonth=parseInt('11');
+			
+			//設定彙整年月份，在submenu_output.html會用到
+			var outputyear = parseInt("");
+			var outputmonth = parseInt("");
+			
+			$(function(){	
+				
+				set_Edit_MonthPicker();	//submenu_broke、submenu_work
+				
+				setOutputMonthPicker();	//submenu_output
+				
+				//修正MonthPicker.js在thickbox內出現會有異常狀況
+				$(".tyear").hover(function(){
+					$(".MonthPicker ul ul").css('visibility','visible');
+				},function(){
+					$(".MonthPicker ul ul").css('visibility','hidden');
+				});
+
+				$("#mainMenu ul li a").hover(function(){
+					$(this).css('color', '#89dc33'); //綠色強調！
+					$(this).parent().css('background',"url('/oas/theme/img/oas/listicon4.png\') no-repeat");
+				}, function(){
+					$(this).css('color', '#920783'); //紫色字體！
+					$(this).parent().css('background',"url('/oas/theme/img/oas/listicon3.png') no-repeat");
+				});
+				//主選單的hover功能
+				
+				$(".tr-list").hover(
+					function(){
+						$(this).css({'background-color':'#FFFFEE','color':'#79006F'});	
+					}, 
+					function(){
+						$(this).css({'background-color':'#FFF','color':'#929292'});	
+				});
+				//2010-04-27 k1 表格欄位的hover設定
+			});
+		</script>
+	</head>
+	
+	<body>
+		<div class="mask"><img border="0" src="/oas/theme/img/oas/process/loadingAnimation.gif"></div>
+
+			<div id="blockTwo">
+
+				<div id="mainMenu"><!--來自系統選單（系統取得）<BR />-->
+					<img border="0" title="線上行政系統" src="http://divisionwork.cc.scu.edu.tw/oas/theme/img/oas/oasLogo.gif" class="logo">
+					<ul class="main-ul">
+						<li><a href="http://divisionwork.cc.scu.edu.tw/oas/month/index/brokepoint">斷線紀錄</a></li>
+						<li><a href="http://divisionwork.cc.scu.edu.tw/oas/month/index/workpoint">工作重點</a></li>
+						<!--2010-02-24 k1 判斷可彙整權限-->
+												
+						<li><a href="http://divisionwork.cc.scu.edu.tw/oas/">回首頁</a></li>
+						<li><a href="http://divisionwork.cc.scu.edu.tw/oas/index/logout">登出</a></li>
+					</ul>
+				</div>
+				
+				<div id="message">
+				<span class="em">tsung</span> 您好！
+				目前位置 <span class="em">月報模組 &gt; 斷線紀錄</span>
+				<span id="moduleMsg">顯示<span class="em" id="nowDisplay"> 2011年10月</span> 月報資料 編輯 <span class="em" id="nowEdit">2011年11月</span> 月報資料</span><span id="runtimeMsg"></span>
+				</div>
+				
+					<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/css/month/content-format.css" type="text/css" rel="stylesheet">
+<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/tablesorter/blue/style.css" type="text/css" rel="stylesheet">
+
+<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/tablesorter/jquery.tablesorter.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("a[id^='remove-broke-']").bind('click', function(){
+			_process_item_remove( this.id , 'remove-broke-', '斷線紀錄-刪除', URL+'month/brokepoint/process');
+		});	
+		
+		$("#broke-table").tablesorter({
+			headers: {
+				6: {
+					sorter: false
+				},
+				2: {
+					sorter: false
+				}
+			}
+		});
+	});
+	
+	function adquery_changeDivContent(data){
+		$("#content-broke").empty().html(data);
+		
+		$("#broke-table").tablesorter({
+			headers: {
+				6: {
+					sorter: false
+				},
+				2: {
+					sorter: false
+				}
+			}
+		});
+		
+		tb_init("a.thickbox");
+	}
+</script>
+<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/month/box_brokeback.js" type="text/javascript"></script>
+
+<div class="month-query-block">	
+<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/adquery?keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" id="proc-query" title="月報模組--查詢紀錄">查詢斷線紀錄</a>
+</div>
+<span class="month-picker-block">
+	設定編輯年月份
+	<div id="monthpicker" class="MonthPicker"><table><tbody><tr><th class="caption">Year</th><td><ul><li class="li tyear"><!--[if IE 6]><a class="li" href="javascript:;"><table><tr><td><![endif]--><a href="javascript:;"><span class="selected">2011</span></a><ul><li class="li"><a class="" title="2009" href="javascript:;">2009</a></li><li class="li"><a class="" title="2010" href="javascript:;">2010</a></li><li class="li"><a class="selected" title="2011" href="javascript:;">2011</a></li><li class="li"><a class="" title="2012" href="javascript:;">2012</a></li><li class="li"><a class="" title="2013" href="javascript:;">2013</a></li><li class="li"><a class="" title="2014" href="javascript:;">2014</a></li></ul><!--[if IE 6]></td></tr></table></a><![endif]--></li></ul></td><th class="caption">Month</th><td class="month"><a title="1" href="javascript:;"><span class="">Jan</span></a><a title="2" href="javascript:;"><span class="">Feb</span></a><a title="3" href="javascript:;"><span class="">Mar</span></a><a title="4" href="javascript:;"><span class="">Apr</span></a><a title="5" href="javascript:;"><span class="">May</span></a><a title="6" href="javascript:;"><span class="">Jun</span></a><a title="7" href="javascript:;"><span class="">Jul</span></a><a title="8" href="javascript:;"><span class="">Aug</span></a><a title="9" href="javascript:;"><span class="">Sep</span></a><a title="10" href="javascript:;"><span class="">Oct</span></a><a title="11" href="javascript:;"><span class="selected">Nov</span></a><a title="12" href="javascript:;"><span class="">Dec</span></a></td></tr></tbody></table></div>
+	<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/insert?keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=550&amp;width=800" class="thickbox" id="proc-insert" title="月報模組--新增紀錄">新增斷線紀錄</a>
+</span>					
+				<div id="content"><!--主要內容區塊：<BR />-->
+					<div id="content-broke">
+	<table cellspacing="1" cellpadding="0" class="tablesorter" id="broke-table">
+	<thead> 
+	<tr>
+	<th class="th-user header">填報人</th>
+	<th class="th-date header">發生日期</th>
+	<th class="th-weekday">星期</th>
+	<th class="th-targetarea header">發生校區</th>
+	<th class="th-stoptype header">暫停服務種類</th>
+	<th class="th-stopreason header">停機事由</th>
+	<th class="th-process">執行功能</th>
+	</tr>
+	</thead>
+	<tbody>
+		<tr class="tr-list" id="tr-1090" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+		<td class="td-user">kiw</td>
+		<td id="1090-inputDate">2011-10-09</td>
+		<td align="center" id="1090-inputWeek">日</td>
+		<td align="center" id="1090-targetArea">全校</td>
+		<td align="center" id="1090-stopType">網路</td>
+		<td id="1090-stopReason">更新兩校區核心交換器</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1090&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1090">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1091" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+		<td class="td-user">kiw</td>
+		<td id="1091-inputDate">2011-10-11</td>
+		<td align="center" id="1091-inputWeek">二</td>
+		<td align="center" id="1091-targetArea">雙溪</td>
+		<td align="center" id="1091-stopType">網路</td>
+		<td id="1091-stopReason">更新寵惠堂 無線網路設備</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1091&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1091">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1092" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+		<td class="td-user">kiw</td>
+		<td id="1092-inputDate">2011-10-11</td>
+		<td align="center" id="1092-inputWeek">二</td>
+		<td align="center" id="1092-targetArea">雙溪</td>
+		<td align="center" id="1092-stopType">網路</td>
+		<td id="1092-stopReason">更新文化樓 無線網路設備</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1092&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1092">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1093">
+		<td class="td-user">kiw</td>
+		<td id="1093-inputDate">2011-10-11</td>
+		<td align="center" id="1093-inputWeek">二</td>
+		<td align="center" id="1093-targetArea">雙溪</td>
+		<td align="center" id="1093-stopType">網路</td>
+		<td id="1093-stopReason">更新超庸館 無線網路設備</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1093&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1093">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1094" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+		<td class="td-user">kiw</td>
+		<td id="1094-inputDate">2011-10-11</td>
+		<td align="center" id="1094-inputWeek">二</td>
+		<td align="center" id="1094-targetArea">雙溪</td>
+		<td align="center" id="1094-stopType">網路</td>
+		<td id="1094-stopReason">更新愛徒樓 無線網路設備</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1094&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1094">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1095" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+		<td class="td-user">kiw</td>
+		<td id="1095-inputDate">2011-10-17</td>
+		<td align="center" id="1095-inputWeek">一</td>
+		<td align="center" id="1095-targetArea">雙溪</td>
+		<td align="center" id="1095-stopType">網路</td>
+		<td id="1095-stopReason">更新哲生樓 無線網路設備</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1095&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1095">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1096">
+		<td class="td-user">kiw</td>
+		<td id="1096-inputDate">2011-10-20</td>
+		<td align="center" id="1096-inputWeek">四</td>
+		<td align="center" id="1096-targetArea">雙溪</td>
+		<td align="center" id="1096-stopType">網路</td>
+		<td id="1096-stopReason">更新招待所光纖線路</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1096&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1096">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1097">
+		<td class="td-user">kiw</td>
+		<td id="1097-inputDate">2011-10-17</td>
+		<td align="center" id="1097-inputWeek">一</td>
+		<td align="center" id="1097-targetArea">雙溪</td>
+		<td align="center" id="1097-stopType">網路</td>
+		<td id="1097-stopReason">網路設備故障</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1097&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1097">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1098">
+		<td class="td-user">kiw</td>
+		<td id="1098-inputDate">2011-10-17</td>
+		<td align="center" id="1098-inputWeek">一</td>
+		<td align="center" id="1098-targetArea">雙溪</td>
+		<td align="center" id="1098-stopType">網路</td>
+		<td id="1098-stopReason">網路設備故障</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1098&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1098">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1099">
+		<td class="td-user">kiw</td>
+		<td id="1099-inputDate">2011-10-17</td>
+		<td align="center" id="1099-inputWeek">一</td>
+		<td align="center" id="1099-targetArea">雙溪</td>
+		<td align="center" id="1099-stopType">網路</td>
+		<td id="1099-stopReason">網路設備線路接觸不良</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1099&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1099">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1100">
+		<td class="td-user">phoebe1983</td>
+		<td id="1100-inputDate">2011-09-26</td>
+		<td align="center" id="1100-inputWeek">一</td>
+		<td align="center" id="1100-targetArea">全校</td>
+		<td align="center" id="1100-stopType">伺服器故障、擴充、維修</td>
+		<td id="1100-stopReason">webmail設備故障</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1100&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1100">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1101" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+		<td class="td-user">phoebe1983</td>
+		<td id="1101-inputDate">2011-10-21</td>
+		<td align="center" id="1101-inputWeek">五</td>
+		<td align="center" id="1101-targetArea">全校</td>
+		<td align="center" id="1101-stopType">伺服器故障、擴充、維修</td>
+		<td id="1101-stopReason">垃圾信防禦系統硬體故障</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1101&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1101">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1102">
+		<td class="td-user">yiting</td>
+		<td id="1102-inputDate">2011-10-19</td>
+		<td align="center" id="1102-inputWeek">三</td>
+		<td align="center" id="1102-targetArea">全校</td>
+		<td align="center" id="1102-stopType">伺服器故障、擴充、維修</td>
+		<td id="1102-stopReason">網域名稱伺服器異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1102&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1102">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1123">
+		<td class="td-user">kkboy</td>
+		<td id="1123-inputDate">2011-10-11</td>
+		<td align="center" id="1123-inputWeek">二</td>
+		<td align="center" id="1123-targetArea">城中</td>
+		<td align="center" id="1123-stopType">網路</td>
+		<td id="1123-stopReason">更換第四大樓 無線網路設備</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1123&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1123">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1124" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+		<td class="td-user">kkboy</td>
+		<td id="1124-inputDate">2011-10-11</td>
+		<td align="center" id="1124-inputWeek">二</td>
+		<td align="center" id="1124-targetArea">城中</td>
+		<td align="center" id="1124-stopType">網路</td>
+		<td id="1124-stopReason">更換崇基樓 無線網路設備</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1124&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1124">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1125" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+		<td class="td-user">kkboy</td>
+		<td id="1125-inputDate">2011-10-11</td>
+		<td align="center" id="1125-inputWeek">二</td>
+		<td align="center" id="1125-targetArea">城中</td>
+		<td align="center" id="1125-stopType">網路</td>
+		<td id="1125-stopReason">更換第六大樓 無線網路設備</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1125&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1125">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1126">
+		<td class="td-user">kkboy</td>
+		<td id="1126-inputDate">2011-10-21</td>
+		<td align="center" id="1126-inputWeek">五</td>
+		<td align="center" id="1126-targetArea">城中</td>
+		<td align="center" id="1126-stopType">網路</td>
+		<td id="1126-stopReason">更換第三大樓 無線網路設備</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1126&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1126">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1127">
+		<td class="td-user">kkboy</td>
+		<td id="1127-inputDate">2011-10-21</td>
+		<td align="center" id="1127-inputWeek">五</td>
+		<td align="center" id="1127-targetArea">城中</td>
+		<td align="center" id="1127-stopType">網路</td>
+		<td id="1127-stopReason">更換崇基樓 無線網路設備光纖線</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1127&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1127">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1128">
+		<td class="td-user">tsuiting</td>
+		<td id="1128-inputDate">2011-10-19</td>
+		<td align="center" id="1128-inputWeek">三</td>
+		<td align="center" id="1128-targetArea">城中</td>
+		<td align="center" id="1128-stopType">網路</td>
+		<td id="1128-stopReason">更換城中校區無線網路認證閘道器</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1128&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1128">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1129">
+		<td class="td-user">tsuiting</td>
+		<td id="1129-inputDate">2011-10-19</td>
+		<td align="center" id="1129-inputWeek">三</td>
+		<td align="center" id="1129-targetArea">城中</td>
+		<td align="center" id="1129-stopType">網路</td>
+		<td id="1129-stopReason">更換城中校區無線網路認證閘道器</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1129&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1129">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1130">
+		<td class="td-user">tsuiting</td>
+		<td id="1130-inputDate">2011-09-30</td>
+		<td align="center" id="1130-inputWeek">五</td>
+		<td align="center" id="1130-targetArea">城中</td>
+		<td align="center" id="1130-stopType">伺服器故障、擴充、維修</td>
+		<td id="1130-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1130&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1130">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1131">
+		<td class="td-user">tsuiting</td>
+		<td id="1131-inputDate">2011-09-30</td>
+		<td align="center" id="1131-inputWeek">五</td>
+		<td align="center" id="1131-targetArea">城中</td>
+		<td align="center" id="1131-stopType">伺服器故障、擴充、維修</td>
+		<td id="1131-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1131&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1131">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1132">
+		<td class="td-user">tsuiting</td>
+		<td id="1132-inputDate">2011-09-30</td>
+		<td align="center" id="1132-inputWeek">五</td>
+		<td align="center" id="1132-targetArea">城中</td>
+		<td align="center" id="1132-stopType">伺服器故障、擴充、維修</td>
+		<td id="1132-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1132&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1132">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1133">
+		<td class="td-user">tsuiting</td>
+		<td id="1133-inputDate">2011-09-30</td>
+		<td align="center" id="1133-inputWeek">五</td>
+		<td align="center" id="1133-targetArea">城中</td>
+		<td align="center" id="1133-stopType">伺服器故障、擴充、維修</td>
+		<td id="1133-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1133&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1133">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1134">
+		<td class="td-user">tsuiting</td>
+		<td id="1134-inputDate">2011-09-30</td>
+		<td align="center" id="1134-inputWeek">五</td>
+		<td align="center" id="1134-targetArea">城中</td>
+		<td align="center" id="1134-stopType">伺服器故障、擴充、維修</td>
+		<td id="1134-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1134&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1134">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1135">
+		<td class="td-user">tsuiting</td>
+		<td id="1135-inputDate">2011-10-01</td>
+		<td align="center" id="1135-inputWeek">六</td>
+		<td align="center" id="1135-targetArea">城中</td>
+		<td align="center" id="1135-stopType">伺服器故障、擴充、維修</td>
+		<td id="1135-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1135&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1135">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1136">
+		<td class="td-user">tsuiting</td>
+		<td id="1136-inputDate">2011-10-01</td>
+		<td align="center" id="1136-inputWeek">六</td>
+		<td align="center" id="1136-targetArea">城中</td>
+		<td align="center" id="1136-stopType">伺服器故障、擴充、維修</td>
+		<td id="1136-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1136&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1136">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1137">
+		<td class="td-user">tsuiting</td>
+		<td id="1137-inputDate">2011-10-01</td>
+		<td align="center" id="1137-inputWeek">六</td>
+		<td align="center" id="1137-targetArea">城中</td>
+		<td align="center" id="1137-stopType">伺服器故障、擴充、維修</td>
+		<td id="1137-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1137&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1137">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1138">
+		<td class="td-user">tsuiting</td>
+		<td id="1138-inputDate">2011-10-01</td>
+		<td align="center" id="1138-inputWeek">六</td>
+		<td align="center" id="1138-targetArea">城中</td>
+		<td align="center" id="1138-stopType">伺服器故障、擴充、維修</td>
+		<td id="1138-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1138&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1138">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1139">
+		<td class="td-user">tsuiting</td>
+		<td id="1139-inputDate">2011-10-01</td>
+		<td align="center" id="1139-inputWeek">六</td>
+		<td align="center" id="1139-targetArea">城中</td>
+		<td align="center" id="1139-stopType">伺服器故障、擴充、維修</td>
+		<td id="1139-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1139&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1139">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1140">
+		<td class="td-user">tsuiting</td>
+		<td id="1140-inputDate">2011-10-01</td>
+		<td align="center" id="1140-inputWeek">六</td>
+		<td align="center" id="1140-targetArea">城中</td>
+		<td align="center" id="1140-stopType">伺服器故障、擴充、維修</td>
+		<td id="1140-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1140&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1140">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1141">
+		<td class="td-user">tsuiting</td>
+		<td id="1141-inputDate">2011-10-01</td>
+		<td align="center" id="1141-inputWeek">六</td>
+		<td align="center" id="1141-targetArea">城中</td>
+		<td align="center" id="1141-stopType">伺服器故障、擴充、維修</td>
+		<td id="1141-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1141&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1141">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1142">
+		<td class="td-user">tsuiting</td>
+		<td id="1142-inputDate">2011-10-01</td>
+		<td align="center" id="1142-inputWeek">六</td>
+		<td align="center" id="1142-targetArea">城中</td>
+		<td align="center" id="1142-stopType">伺服器故障、擴充、維修</td>
+		<td id="1142-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1142&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1142">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1143">
+		<td class="td-user">tsuiting</td>
+		<td id="1143-inputDate">2011-10-01</td>
+		<td align="center" id="1143-inputWeek">六</td>
+		<td align="center" id="1143-targetArea">城中</td>
+		<td align="center" id="1143-stopType">伺服器故障、擴充、維修</td>
+		<td id="1143-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1143&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1143">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1144">
+		<td class="td-user">tsuiting</td>
+		<td id="1144-inputDate">2011-10-01</td>
+		<td align="center" id="1144-inputWeek">六</td>
+		<td align="center" id="1144-targetArea">城中</td>
+		<td align="center" id="1144-stopType">伺服器故障、擴充、維修</td>
+		<td id="1144-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1144&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1144">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1145">
+		<td class="td-user">tsuiting</td>
+		<td id="1145-inputDate">2011-10-01</td>
+		<td align="center" id="1145-inputWeek">六</td>
+		<td align="center" id="1145-targetArea">城中</td>
+		<td align="center" id="1145-stopType">伺服器故障、擴充、維修</td>
+		<td id="1145-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1145&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1145">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		<tr class="tr-list" id="tr-1146">
+		<td class="td-user">tsuiting</td>
+		<td id="1146-inputDate">2011-10-02</td>
+		<td align="center" id="1146-inputWeek">日</td>
+		<td align="center" id="1146-targetArea">城中</td>
+		<td align="center" id="1146-stopType">伺服器故障、擴充、維修</td>
+		<td id="1146-stopReason">網頁服務異常</td>
+		<td align="center">
+			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1146&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1146">
+		細節</a>&nbsp;
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+				</td>
+	</tr>
+		</tbody>
+	</table>
+</div>				</div>
+				
+			</div>
+	
+</body></html>

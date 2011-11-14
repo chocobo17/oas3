@@ -20,6 +20,11 @@ class Month_ManageController extends Zend_Controller_Action
 		$this->_logger = $this->getInvokeArg('bootstrap')->getResource('logger');
 	}    
 	
+	public function indexAction()
+	{
+		
+	}
+	
 	/**
 	 * feature::
 	 * called by::
@@ -27,6 +32,10 @@ class Month_ManageController extends Zend_Controller_Action
 	 */
 	public function tempAction()
 	{
+		Zend_Debug::dump($_REQUEST);
+		// Zend_Debug::dump($this->getRequest());
+		Zend_Debug::dump($this->getRequest()->getParams());
+		
 	}
 }
 ?>
