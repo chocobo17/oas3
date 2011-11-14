@@ -28,5 +28,8 @@ class Month_AjaxLoadController extends Zend_Controller_Action
 	public function tempAction()
 	{
 	}
+	public function indexAction()
+	{
+	}
 }
 ?>
