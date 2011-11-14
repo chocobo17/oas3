@@ -1,4 +1,8 @@
-<?php
+<html>
+	<head>
+		<title>OAS3.0 周月報系統</title>
+	</head>
+	<?
 /**
  * 2011-11-10
  * @author k1
@@ -38,3 +42,5 @@ $application = new Zend_Application(
 
 $application->bootstrap()->run();
 ?>
+
+</html>
