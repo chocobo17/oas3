@@ -24,41 +24,39 @@
 				});
 			});
 		</script>
-	</head>
-		<!--
-2010-01-05
-出現完整內容，尚須做排版處理！
--->
-<body>
-	發佈者：kiw 發佈時間2011-10-24 15:00:38 紀錄所屬報告月份2011-10
-	<table width="80%" cellspacing="1" cellpadding="0" border="1" class="broke-table-1">
-	<tbody>
-	<tr>
-		<th width="15%" class="th-date">日期</th>
-		<td width="20%">2011-10-09</td>
-		<th width="15%" class="th-weekday">星期</th>
-		<td width="10%">日</td>
-		<th width="15%" class="th-targetarea">發生校區</th>
-		<td width="25%">全校</td>
-	</tr>
-	<tr>
-		<th class="th-stoptype">暫停服務種類</th><td colspan="3">網路</td>
-		<th class="th_title">公告次數</th><td>1</td>
-	</tr>
-	<tr>
-	<th class="th-interrupt">服務中斷時間</th>
-	<td colspan="3">08:30 到 17:00</td>
-	<th class="th-passhour">經過時間</th>
-	<td>8.50</td>
-	</tr>
-	<tr>
-		<th colspan="6" class="th_title">說明</th><!--停機事由、中斷服務、影響區域-->
-	</tr>
-	<tr>
-		<td colspan="6">自10-09 08:30～10-09 17:00 因更新兩校區核心交換器，暫停全校之有線及無線網路共8.50小時。</td>
-	</tr>
-	</tbody>
-	</table>
+	<style type="text/css">
+	#editArea{
+		margin:20px 0px 0px auto;
+		text-align:center;
+	}
+</style><script type="text/javascript">
+	$(function(){
+		work_send_data_to_process()
+	});
+</script></head>
+		
 
-	<center> <input type="button" value="關閉視窗" name="cancelBtn" id="cancelBtn"> </center>
+<body>
+<div id="editArea">
+	<form id="workForm">
+		<input type="hidden" value="update" name="proc">
+		<input type="hidden" value="3172" name="itemid">
+		選擇主項次
+		<select id="contentFormatId" name="contentFormatId">
+									<option selected="selected" value="2">一、電子化校園專案執行說明</option>
+																		<option value="4&quot;">二、校務行政系統開發說明</option>
+												<option value="5&quot;">三、全校網路設備與相關系統說明</option>
+												<option value="6&quot;">四、教職員生服務事項說明</option>
+												<option value="7&quot;">五、協助校內其他單位說明</option>
+								</select>
+		<br>
+		<textarea wrap="soft" id="content" name="content" cols="40" rows="10">ddd</textarea>
+		<br>
+		<center>
+			<input type="button" value="顯示結果" name="sendBtn" id="sendBtn"> 
+			<input type="button" value="關閉視窗" name="cancelBtn" id="cancelBtn"> 
+		</center>
+		<center><span id="volid-error"></span></center>
+	</form>
+</div>
 </body></html>
