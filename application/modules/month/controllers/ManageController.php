@@ -37,5 +37,33 @@ class Month_ManageController extends Zend_Controller_Action
 		Zend_Debug::dump($this->getRequest()->getParams());
 		
 	}
+	public function brokepointAction()
+	{
+		
+	}
+	public function brokequeryAction()
+	{
+		
+	}
+	public function brokeinsertAction()
+	{
+		
+	}
+	public function brokedatailAction()
+	{
+		
+	}
+	public function workpointAction()
+	{
+		
+	}
+	public function workqueryAction()
+	{
+		
+	}
+	public function workupdateAction()
+	{
+		
+	}
 }
 ?>

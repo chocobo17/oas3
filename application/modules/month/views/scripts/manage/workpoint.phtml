@@ -1,0 +1,546 @@
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+        <title>線上行政系統--月報模組 v2.6b</title>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<meta content="IE=8" http-equiv="X-UA-Compatible">
+		
+		<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/css/month/module.css" type="text/css" rel="stylesheet">
+		<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/countdown/jquery.countdown.css" type="text/css" rel="stylesheet">
+		<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/thickbox/thickbox.css" type="text/css" rel="stylesheet">
+		<link charset="utf-8" type="text/css" href="/oas/theme/js/jplug/monthpicker/monthpicker.css" rel="stylesheet">
+		<link href="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/datepicker.css" rel="stylesheet">
+		
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/dateFormatFix.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jquery132.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var URL = 'http://divisionwork.cc.scu.edu.tw/oas/';
+			var nowMain = '工作重點';
+		</script>
+		<!--<script type="text/javascript" src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/clock.js"></script>-->
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/jquery.dump.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/countdown/jquery.countdown.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/thickbox/thickbox.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/monthpicker/monthpicker.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/date.js" type="text/javascript"></script>
+		<!--[if IE]><script type="text/javascript" src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/jquery.bgiframe.js"></script><![endif]-->
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/jquery.datepicker.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/month/monthpicker.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/month/remove_item.js" type="text/javascript"></script>
+		<script type="text/javascript">
+
+//			tm_tmp = '1321251274';
+//			tm = parseInt(tm_tmp)*1000+60000000;
+//			var time = new Date(tm);
+			
+			Date.firstDayOfWeek = 0;
+			Date.format = 'yyyy-mm-dd';
+			var date = new Date();
+			//設定編輯或彙整顯示年月份
+			
+			var theyear=parseInt('2011');
+			var themonth=parseInt('11');
+			
+			//設定彙整年月份，在submenu_output.html會用到
+			var outputyear = parseInt("");
+			var outputmonth = parseInt("");
+			
+			$(function(){	
+				
+				set_Edit_MonthPicker();	//submenu_broke、submenu_work
+				
+				setOutputMonthPicker();	//submenu_output
+				
+				//修正MonthPicker.js在thickbox內出現會有異常狀況
+				$(".tyear").hover(function(){
+					$(".MonthPicker ul ul").css('visibility','visible');
+				},function(){
+					$(".MonthPicker ul ul").css('visibility','hidden');
+				});
+
+				$("#mainMenu ul li a").hover(function(){
+					$(this).css('color', '#89dc33'); //綠色強調！
+					$(this).parent().css('background',"url('/oas/theme/img/oas/listicon4.png\') no-repeat");
+				}, function(){
+					$(this).css('color', '#920783'); //紫色字體！
+					$(this).parent().css('background',"url('/oas/theme/img/oas/listicon3.png') no-repeat");
+				});
+				//主選單的hover功能
+				
+				$(".tr-list").hover(
+					function(){
+						$(this).css({'background-color':'#FFFFEE','color':'#79006F'});	
+					}, 
+					function(){
+						$(this).css({'background-color':'#FFF','color':'#929292'});	
+				});
+				//2010-04-27 k1 表格欄位的hover設定
+			});
+		</script>
+	</head>
+	
+	<body>
+		<div class="mask"><img border="0" src="/oas/theme/img/oas/process/loadingAnimation.gif"></div>
+
+			<div id="blockTwo">
+
+				<div id="mainMenu"><!--來自系統選單（系統取得）<BR />-->
+					<img border="0" title="線上行政系統" src="http://divisionwork.cc.scu.edu.tw/oas/theme/img/oas/oasLogo.gif" class="logo">
+					<ul class="main-ul">
+						<li><a href="http://divisionwork.cc.scu.edu.tw/oas/month/index/brokepoint">斷線紀錄</a></li>
+						<li style="background: url(&quot;/oas/theme/img/oas/listicon3.png&quot;) no-repeat scroll 0% 0% transparent;"><a href="http://divisionwork.cc.scu.edu.tw/oas/month/index/workpoint" style="color: rgb(146, 7, 131);">工作重點</a></li>
+						<!--2010-02-24 k1 判斷可彙整權限-->
+												
+						<li style="background: url(&quot;/oas/theme/img/oas/listicon3.png&quot;) no-repeat scroll 0% 0% transparent;"><a href="http://divisionwork.cc.scu.edu.tw/oas/" style="color: rgb(146, 7, 131);">回首頁</a></li>
+						<li style="background: url(&quot;/oas/theme/img/oas/listicon3.png&quot;) no-repeat scroll 0% 0% transparent;"><a href="http://divisionwork.cc.scu.edu.tw/oas/index/logout" style="color: rgb(146, 7, 131);">登出</a></li>
+					</ul>
+				</div>
+				
+				<div id="message">
+				<span class="em">tsung</span> 您好！
+				目前位置 <span class="em">月報模組 &gt; 工作重點</span>
+				<span id="moduleMsg">顯示<span class="em" id="nowDisplay"> 2011年10月</span> 月報資料 編輯 <span class="em" id="nowEdit">2011年11月</span> 月報資料</span><span id="runtimeMsg"></span>
+				</div>
+				
+					<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/css/month/content-format.css" type="text/css" rel="stylesheet">
+<script type="text/javascript">
+	$(function(){
+		$("#proc-insert").click(function(){
+			$.ajax({
+				url:URL+'month/workpoint/process',
+				type:'POST',
+				data:decodeURI($("form[name='work-from-insert']").serialize()),
+				dataType:'json',
+				beforeSend:function(XHR){
+					$("#proc-insert").css("disabled","disabled");
+				},
+				success:function(data){
+					$("#nowDisplay").text(data.display);
+					$("#runtimeMsg").html("&lt;span class='em_msg'&gt;"+data.msg+"&lt;/span&gt;").fadeOut(1500, function(){
+						$("#runtimeMsg &gt; span").remove();
+						$("#runtimeMsg").fadeIn('fast', function(){
+							window.location=URL+'month/index/workpoint';
+						});
+					});	
+					
+				},
+				error:function(XHR){
+					alert(XHR.status);
+				},
+				complete:function(XHR){
+					$("#proc-insert").css("disabled","");
+				}
+			});
+		});
+	});
+
+	function remove_empty_table()
+	{
+		$.each($("table[class^='table-']"), function(e){
+			var tr_amount = $(this).children().children().size();
+			if(tr_amount == 1){ //只有標題列
+				$(this).parent().parent().css('display','none');
+				//不用remove是為了設定編輯月份，更新Table
+			}
+		});
+	}
+
+function adquery_changeDivContent(data){
+	$("#content-work").empty().html(data);
+}
+
+	$(function(){
+		$("legend").css({'cursor':'pointer','color':'#89dc33'}).click(function(){
+			$(this).parent().children().filter("[class^='field-']").toggle(900);
+		});
+		//針對欄位區塊的標題實做點選 顯示/隱藏 功能！
+		
+		remove_empty_table();
+		
+		$("a[id^='remove-work']").click(function(){
+			_process_item_remove( this.id , 'remove-work-', '工作重點-刪除', URL+'month/workpoint/process');
+		});
+
+	});
+</script>
+<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/month/box_workback.js" type="text/javascript"></script>
+
+<div class="month-query-block">	
+<a href="http://divisionwork.cc.scu.edu.tw/oas/month/workpoint/adquery?keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" id="proc-query" title="月報模組--查詢紀錄">查詢工作重點</a>
+</div>
+<span class="month-picker-block">
+	設定編輯年月份
+	<div id="monthpicker" class="MonthPicker"><table><tbody><tr><th class="caption">Year</th><td><ul><li class="li tyear"><!--[if IE 6]><a class="li" href="javascript:;"><table><tr><td><![endif]--><a href="javascript:;"><span class="selected">2011</span></a><ul><li class="li"><a class="" title="2009" href="javascript:;">2009</a></li><li class="li"><a class="" title="2010" href="javascript:;">2010</a></li><li class="li"><a class="selected" title="2011" href="javascript:;">2011</a></li><li class="li"><a class="" title="2012" href="javascript:;">2012</a></li><li class="li"><a class="" title="2013" href="javascript:;">2013</a></li><li class="li"><a class="" title="2014" href="javascript:;">2014</a></li></ul><!--[if IE 6]></td></tr></table></a><![endif]--></li></ul></td><th class="caption">Month</th><td class="month"><a title="1" href="javascript:;"><span class="">Jan</span></a><a title="2" href="javascript:;"><span class="">Feb</span></a><a title="3" href="javascript:;"><span class="">Mar</span></a><a title="4" href="javascript:;"><span class="">Apr</span></a><a title="5" href="javascript:;"><span class="">May</span></a><a title="6" href="javascript:;"><span class="">Jun</span></a><a title="7" href="javascript:;"><span class="">Jul</span></a><a title="8" href="javascript:;"><span class="">Aug</span></a><a title="9" href="javascript:;"><span class="">Sep</span></a><a title="10" href="javascript:;"><span class="">Oct</span></a><a title="11" href="javascript:;"><span class="selected">Nov</span></a><a title="12" href="javascript:;"><span class="">Dec</span></a></td></tr></tbody></table></div>
+</span>
+
+<div class="workpoint-add">
+	<form name="work-from-insert">
+		<input type="hidden" value="insert" name="proc">
+	編輯工作重點
+	<select name="contentFormatId">
+		<option value="2">一、電子化校園專案執行說明</option>
+		<option value="4">二、校務行政系統開發說明</option>
+		<option value="5">三、全校網路設備與相關系統說明</option>
+		<option value="6">四、教職員生服務事項說明</option>
+		<option value="7">五、協助校內其他單位說明</option>
+	</select>
+	
+	<input type="text" name="content" class="workpoint-add-input">
+	
+	<a href="#" id="proc-insert">增加</a>
+	</form>
+</div>					
+				<div id="content"><!--主要內容區塊：<BR />-->
+					<div id="content-work">
+						<fieldset id="fieldset-2">
+		<legend style="cursor: pointer; color: rgb(137, 220, 51);">一、電子化校園專案執行說明</legend>
+		<div class="field-2">
+			<table class="work-table table-0">
+				<tbody><tr>
+					<th class="th-item">工作重點</th>
+					<th class="th-user">發佈者</th>
+					<th class="th-process">執行功能</th>
+				</tr>
+																																																																																																																																																																																																																																																																																																							</tbody></table>
+		</div>
+	</fieldset>
+														<fieldset id="fieldset-4">
+		<legend style="cursor: pointer; color: rgb(137, 220, 51);">二、校務行政系統開發說明</legend>
+		<div class="field-4">
+			<table class="work-table table-2">
+				<tbody><tr>
+					<th class="th-item">工作重點</th>
+					<th class="th-user">發佈者</th>
+					<th class="th-process">執行功能</th>
+				</tr>
+																																																																																																																																																																																																																																																																																																							</tbody></table>
+		</div>
+	</fieldset>
+									<fieldset id="fieldset-5">
+		<legend style="cursor: pointer; color: rgb(137, 220, 51);">三、全校網路設備與相關系統說明</legend>
+		<div class="field-5">
+			<table class="work-table table-3">
+				<tbody><tr>
+					<th class="th-item">工作重點</th>
+					<th class="th-user">發佈者</th>
+					<th class="th-process">執行功能</th>
+				</tr>
+																				<tr class="tr-list" id="tr-3146" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3146-content">完成網路流量分析設備(Niksun)建置</td>
+					<td id="3146-user">yiting</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3145">
+					<td id="3145-content">完成網路流量伺服器轉移</td>
+					<td id="3145-user">yiting</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																																<tr class="tr-list" id="tr-3142" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3142-content">完成卓越計畫入侵偵測防禦系統測試</td>
+					<td id="3142-user">yiting</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3141" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3141-content">完成雙溪校區DNS案採購</td>
+					<td id="3141-user">phoebe1983</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3140" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3140-content">完成垃圾信防禦系統擴充案採購</td>
+					<td id="3140-user">phoebe1983</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																								<tr class="tr-list" id="tr-3138" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3138-content">完成招待所光纖線路更新工程</td>
+					<td id="3138-user">kiw</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																								<tr class="tr-list" id="tr-3136" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3136-content">完成寵惠堂、文化樓、哲生樓、超庸館、愛徒樓、教師研究二樓、綜合大樓 五樓無線網路交換器更新工程</td>
+					<td id="3136-user">kiw</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3135" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3135-content">完成兩校區核心交換器更新工程</td>
+					<td id="3135-user">kiw</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																								<tr class="tr-list" id="tr-3153" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3153-content">完成崇基樓、鑄秋大樓、第三大樓、第四大樓、第五大樓無線網路交換器更新工程</td>
+					<td id="3153-user">kkboy</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																								<tr class="tr-list" id="tr-3168" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3168-content">完成城中校區圖書館更換故障網路設備</td>
+					<td id="3168-user">kkboy</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																																<tr class="tr-list" id="tr-3165" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3165-content">進行卓越計畫入侵偵測防禦系統請購案</td>
+					<td id="3165-user">k1</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																								<tr class="tr-list" id="tr-3162" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3162-content">進行城中校區無線網路認證閘道器問題處理</td>
+					<td id="3162-user">tsuiting</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3161" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3161-content">進行建立無線網路認證閘道器備份機制</td>
+					<td id="3161-user">tsuiting</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3160">
+					<td id="3160-content">進行個人網頁伺服器帳號建立流程討論及撰寫</td>
+					<td id="3160-user">tsuiting</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3159">
+					<td id="3159-content">進行本校網頁伺服器備份問題處理</td>
+					<td id="3159-user">tsuiting</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3158" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3158-content">進行檔案伺服器系統群組調整</td>
+					<td id="3158-user">tsuiting</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3157">
+					<td id="3157-content">進行請購兩校區更換無線網路案</td>
+					<td id="3157-user">kkboy</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3156" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3156-content">城中校區無線網路流量伺服器轉移</td>
+					<td id="3156-user">kkboy</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																																																																											</tbody></table>
+		</div>
+	</fieldset>
+									<fieldset id="fieldset-6">
+		<legend style="cursor: pointer; color: rgb(137, 220, 51);">四、教職員生服務事項說明</legend>
+		<div class="field-6">
+			<table class="work-table table-4">
+				<tbody><tr>
+					<th class="th-item">工作重點</th>
+					<th class="th-user">發佈者</th>
+					<th class="th-process">執行功能</th>
+				</tr>
+																																																																												<tr class="tr-list" id="tr-3139" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3139-content">完成100年度本校資訊安全所有相關教育訓練課程</td>
+					<td id="3139-user">phoebe1983</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																																																																																																																																																																																																																																			</tbody></table>
+		</div>
+	</fieldset>
+									<fieldset id="fieldset-7">
+		<legend style="cursor: pointer; color: rgb(137, 220, 51);">五、協助校內其他單位說明</legend>
+		<div class="field-7">
+			<table class="work-table table-5">
+				<tbody><tr>
+					<th class="th-item">工作重點</th>
+					<th class="th-user">發佈者</th>
+					<th class="th-process">執行功能</th>
+				</tr>
+												<tr class="tr-list" id="tr-3169" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3169-content">完成協助經濟系借用電腦教室網路斷線</td>
+					<td id="3169-user">kkboy</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																																<tr class="tr-list" id="tr-3144" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3144-content">完成配合教學資源中心、會計室、心理系、生活輔導組、課外活動組及圖書館網路服務申請，修改防火牆</td>
+					<td id="3144-user">yiting</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3143" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3143-content">完成配合資管系考試作業及企管系課程需求，修改網路設備相關設定</td>
+					<td id="3143-user">yiting</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																																																								<tr class="tr-list" id="tr-3137">
+					<td id="3137-content">完成支援教育部訪察會場網路建置及待命</td>
+					<td id="3137-user">kiw</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																																<tr class="tr-list" id="tr-3134">
+					<td id="3134-content">完成機房環境控制系統 CCTV的影像紀錄備份作業</td>
+					<td id="3134-user">cadalora</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																								<tr class="tr-list" id="tr-3154" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3154-content">協助教學資源中心代管主機(163.14.19.25)硬體維護</td>
+					<td id="3154-user">kkboy</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																								<tr class="tr-list" id="tr-3167" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3167-content">完成內控訪談</td>
+					<td id="3167-user">kkboy</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3166" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3166-content">完成調查全校性伺服器數量及支援IPv6數量</td>
+					<td id="3166-user">k1</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																								<tr class="tr-list" id="tr-3164">
+					<td id="3164-content">完成全校各單位SUN工作站維護合約簽訂</td>
+					<td id="3164-user">tsuiting</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																																																																								<tr class="tr-list" id="tr-3155" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3155-content">完成語言中心代管主機新增技術聯絡人</td>
+					<td id="3155-user">kkboy</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3133" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3133-content">完成空調廠商鉅象協助修改溫度控制監控設備施工</td>
+					<td id="3133-user">cadalora</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3132" style="background-color: rgb(255, 255, 255); color: rgb(146, 146, 146);">
+					<td id="3132-content">進行機房環境控制系統機房跑馬燈、CCTV備份方式、機房門設備異常送修</td>
+					<td id="3132-user">cadalora</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3131">
+					<td id="3131-content">完成彙整2011年9月份機房資安文件</td>
+					<td id="3131-user">cadalora</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3130">
+					<td id="3130-content">進行機房空調改善工程觀察溫度及機房營運狀況</td>
+					<td id="3130-user">cadalora</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3129">
+					<td id="3129-content">完成參加ISO27001-2005 Lead-Auditor資訊安全管理系統主導稽核員校外教育訓練</td>
+					<td id="3129-user">cadalora</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3128">
+					<td id="3128-content">進行觀察骨幹交換器更新時UPS1/4/5負載使用率並要求負責廠商提出電力負載評估</td>
+					<td id="3128-user">cadalora</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+																<tr class="tr-list" id="tr-3127">
+					<td id="3127-content">完成協助註冊組北一區主機代管防火牆服務申請設定</td>
+					<td id="3127-user">cadalora</td>
+					<td align="center">
+		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
+						無執行權限
+							</td>
+				</tr>
+											</tbody></table>
+		</div>
+	</fieldset>
+						
+</div>				</div>
+				
+			</div>
+	
+</body></html>
