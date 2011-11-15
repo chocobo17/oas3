@@ -34,5 +34,8 @@ class Week_ManageController extends Zend_Controller_Action
 	public function previewAction()
 	{
 	}
+	public function listAction()
+	{
+	}
 }
 ?>
