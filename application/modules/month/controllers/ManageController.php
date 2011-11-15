@@ -49,7 +49,7 @@ class Month_ManageController extends Zend_Controller_Action
 	{
 		
 	}
-	public function brokedatailAction()
+	public function brokedetailAction()
 	{
 		
 	}
