@@ -28,5 +28,12 @@ class Month_AjaxController extends Zend_Controller_Action
 	public function tempAction()
 	{
 	}
+	public function sessionmonthAction()//月份切換以及年切換
+	{
+	}
+	public function processAction()//新增或者刪除進行頁面的重新整理
+	{
+		
+	}
 }
 ?>

@@ -37,7 +37,7 @@ class Week_ManageController extends Zend_Controller_Action
 	public function listAction()
 	{
 	}
-	public function searchAction()
+	public function advqueryAction()
 	{
 	}
 }

@@ -28,8 +28,14 @@ class Month_AjaxController extends Zend_Controller_Action
 	public function tempAction()
 	{
 	}
-	public function indexAction()
+	public function setweekqueryAction()//選擇周次切換
 	{
+		
 	}
+     public function adquery()//條件查詢的query
+	{
+		
+	}
+	
 }
 ?>
