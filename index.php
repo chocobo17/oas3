@@ -1,3 +1,4 @@
+
 <html>
 	<head>
 		<title>oas 周月報系統 3.0</title>
@@ -13,7 +14,7 @@
  * 2. APPLICATION_SESSION: 可任意設定，通常設定專案程式英文名稱。
  */
 
-
+//git test
 // Define path to application directory
 defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/application'));
 
