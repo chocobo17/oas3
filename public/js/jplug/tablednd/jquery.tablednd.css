@@ -1,0 +1,12 @@
+/*表格拖曳排序使用樣式*/
+tr.tableDnD-drag-active{
+	background-color:#9bacda;
+}
+
+td.tableDnD-drag-handle{}
+td.tableDnD-drag-hover{
+	background-image: url('dragHover.gif');
+	background-repeat: no-repeat;
+	background-position: center center;
+	cursor: move;
+}

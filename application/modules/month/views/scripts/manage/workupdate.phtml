@@ -1,0 +1,62 @@
+<html><head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<title>thick box視窗</title>
+		<link href="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/datepicker.css" rel="stylesheet">
+		<link href="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/timepicker/timepicker.css" rel="stylesheet">
+		<link href="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/multiselect/jquery.multiSelect.css" rel="stylesheet">
+
+		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jquery132.js" type="text/javascript"></script><!--改使用jQuery-->
+		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/date.js" type="text/javascript"></script>
+<!--[if IE]><script type="text/javascript" src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/jquery.bgiframe.js"></script><![endif]-->
+		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/jquery.datepicker.js" type="text/javascript"></script>
+		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/timepicker/jquery.timePicker.js" type="text/javascript"></script>
+		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/jquery.dump.js" type="text/javascript"></script>
+		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/multiselect/jquery.multiSelect.js" type="text/javascript"></script>
+		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/month/ajax.js" type="text/javascript"></script>
+		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/month/adquery.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var URL = 'http://oas.cc.scu.edu.tw/oas/';
+			var adquery_action = '';
+			
+			$(function(){
+				$("#cancelBtn").click(function(){
+					self.parent.tb_remove();
+				});
+			});
+		</script>
+	<style type="text/css">
+	#editArea{
+		margin:20px 0px 0px auto;
+		text-align:center;
+	}
+</style><script type="text/javascript">
+	$(function(){
+		work_send_data_to_process()
+	});
+</script></head>
+		
+
+<body>
+<div id="editArea">
+	<form id="workForm">
+		<input type="hidden" value="update" name="proc">
+		<input type="hidden" value="3172" name="itemid">
+		選擇主項次
+		<select id="contentFormatId" name="contentFormatId">
+									<option selected="selected" value="2">一、電子化校園專案執行說明</option>
+																		<option value="4&quot;">二、校務行政系統開發說明</option>
+												<option value="5&quot;">三、全校網路設備與相關系統說明</option>
+												<option value="6&quot;">四、教職員生服務事項說明</option>
+												<option value="7&quot;">五、協助校內其他單位說明</option>
+								</select>
+		<br>
+		<textarea wrap="soft" id="content" name="content" cols="40" rows="10">ddd</textarea>
+		<br>
+		<center>
+			<input type="button" value="顯示結果" name="sendBtn" id="sendBtn"> 
+			<input type="button" value="關閉視窗" name="cancelBtn" id="cancelBtn"> 
+		</center>
+		<center><span id="volid-error"></span></center>
+	</form>
+</div>
+</body></html>

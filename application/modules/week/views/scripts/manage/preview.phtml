@@ -1,0 +1,647 @@
+<style type="text/css">
+</style>
+<script type="text/javascript">
+$(function(){
+});
+</script>
+
+<!-- 2011-11-10 預設模組各個Action Views內容架構 -->
+<div id="content">
+	preview這是WEEK模組提供的預設畫面！<br/>
+	<br/>
+	功能描述：xxx
+</div>
+<html><head>
+		<style type="text/css">
+			@media print {
+				body{ font-size:10px;}
+				.pBtn {display:none}
+				.t_statement{ width:10%; text-align:left; height:80px;}
+				.t_noticeitem{ height:100px; text-align:left; padding-left:2px;}
+			}
+			.pBtn{ text-align:center;}
+		html,body{
+			margin:0;
+			padding:0;
+		}	
+			table.out{
+				margin:auto;
+				width:90%;
+			}
+			table.in{ width:100%; border:2px groove #929292; }
+			
+			td{ line-height:1.3em;  text-align:center; vertical-align:middle;}
+			
+			.t0{ width:23%;}
+			.t1,.t2{ width:20%;}
+			.t3,.t4,.t5{ width:10%;}
+			.t6{ width:7%;}
+			.td_title{ }
+			.td_normal{ text-align:left; }
+			.t_statement{ width:15%; height:100px;}
+			.t_noticeitem{ height:120px; text-align:left; padding-left:3%;}
+			
+			.normal{ border-bottom:double 1px black; }
+		</style>
+	</head>
+	<body>
+<div class="pBtn"><button onclick="window.print();">網頁列印</button></div>		
+<div id="pBlock">	
+<table cellspacing="0" cellpadding="1" border="1" class="out">
+<tbody><tr><td><table cellspacing="1" cellpadding="0" border="0" class="in">
+		<tbody><tr>
+			<td colspan="9" rowspan="1" class="td_title">網路組工時統計表（單位：小時）</td>
+		<!--<td class="td_title" rowspan="1" colspan="9">網路組工時統計表（單位：小時）</td>-->
+		</tr>
+		<tr>
+			
+			<td colspan="1" rowspan="2" class="td_title t0">&nbsp;</td>
+			
+			<td colspan="2" rowspan="1" class="td_title t1">伺服器</td>
+			
+			<td colspan="2" rowspan="1" class="td_title t2">網路</td>
+			
+			<td colspan="1" rowspan="2" class="td_title t3">技術諮詢</td>
+			
+			<td colspan="1" rowspan="2" class="td_title t4">行政事務</td>
+			
+			<td colspan="1" rowspan="2" class="td_title t5">其他</td>
+			
+			<td colspan="1" rowspan="2" class="td_title t6">小計</td>
+				</tr>	
+		<tr>
+			
+			<td colspan="1" rowspan="1" class="td_title">建置</td>
+			
+			<td colspan="1" rowspan="1" class="td_title">維修</td>
+			
+			<td colspan="1" rowspan="1" class="td_title">建置</td>
+			
+			<td colspan="1" rowspan="1" class="td_title">維修</td>
+				</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">校長室</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_0_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">教務處</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_1_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">學生事務處</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_2_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">總務處</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_3_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">發展處</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_4_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">研究事務與國際合作處</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_5_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">秘書室</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_6_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">人事室</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_7_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">會計室</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_8_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">圖書館</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_9_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">體育室</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_10_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">軍訓室</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_11_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">校牧室</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_12_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">教學資源中心</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_13_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">通識教育中心</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_14_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">人文社會學院</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_15_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">外國語文學院</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_16_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">理學院</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_17_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">法學院</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_18_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">推廣部</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_19_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">電算中心</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_20_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">商學院</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_21_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">東吳大學全校</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_22_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">其他單位</td>
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td class="td_normal">0.0</td>
+								
+																	<td id="td_23_7" class="td_normal">0.0</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">小計</td>
+													<td id="td_24_0" class="td_normal">0.0</td>
+				
+													<td id="td_24_1" class="td_normal">0.0</td>
+				
+													<td id="td_24_2" class="td_normal">0.0</td>
+				
+													<td id="td_24_3" class="td_normal">0.0</td>
+				
+													<td id="td_24_4" class="td_normal">0.0</td>
+				
+													<td id="td_24_5" class="td_normal">0.0</td>
+				
+													<td id="td_24_6" class="td_normal">0.0</td>
+				
+													<td id="td_24_7" class="td_normal">0.0</td>
+				
+					</tr>
+		</tbody></table></td></tr>
+</tbody></table>
+
+<!--進度說明-->
+<table cellspacing="0" cellpadding="1" class="out">
+<tbody><tr><td><table cellspacing="1" cellpadding="0" border="0" class="in">
+		<tbody><tr>
+			<td colspan="2" rowspan="1" class="td_title">進度說明</td>
+		</tr>
+					
+		<tr>
+			<td colspan="1" rowspan="1" class="td_title t_statement">文件</td>
+			<td class="td_normal">由系統自動產生內容</td>
+		</tr>
+					
+		<tr>
+			<td colspan="1" rowspan="1" class="td_title t_statement">會議</td>
+			<td class="td_normal">由系統自動產生內容</td>
+		</tr>
+					
+		<tr>
+			<td colspan="1" rowspan="1" class="td_title t_statement">維修</td>
+			<td class="td_normal">由系統自動產生內容</td>
+		</tr>
+					
+		<tr>
+			<td colspan="1" rowspan="1" class="td_title t_statement">建置</td>
+			<td class="td_normal">由系統自動產生內容</td>
+		</tr>
+					
+		<tr>
+			<td colspan="1" rowspan="1" class="td_title t_statement">其他</td>
+			<td class="td_normal">由系統自動產生內容</td>
+		</tr>
+		</tbody></table></td></tr>
+</tbody></table>
+
+<!--注意事項-->
+<table cellspacing="0" cellpadding="1" class="out">
+<tbody><tr><td><table cellspacing="1" cellpadding="0" border="0" class="in">
+		<tbody><tr>
+			<td colspan="1" rowspan="1" class="td_title">說明</td>
+		</tr>
+		<tr>
+			<td class="td_normal">
+				<ol>
+				
+					<li>凡處理全校性伺服器/網路所屬之相關問題，服務單位為[東吳大學全校]。</li>
+				
+					<li>個人休假、請假未列於本表中。</li>
+				
+					<li>凡開會、參加研討會等無法歸類於技術或行政業務之工作均屬主辦單位之其他。</li>
+				
+					<li>不屬於學校編制內之一級單位（如：錢穆故居..）屬其他。</li>
+				
+					<li>電算中心項目包括：組內會議、組內行政事項（如：網路技術、行政處理原則、環境整理）之討論。</li>
+							</ol>
+			</td>
+		</tr>
+</tbody></table></td></tr>
+</tbody></table>
+</div>	
+<div class="pBtn"><button onclick="window.print();">網頁列印</button></div>		
+
+
+</body></html>

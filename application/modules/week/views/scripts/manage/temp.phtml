@@ -1,0 +1,1149 @@
+<style type="text/css">
+</style>
+<script type="text/javascript">
+$(function(){
+});
+</script>
+
+<!-- 2011-11-10 預設模組各個Action Views內容架構 -->
+<div id="content">
+	這是WEEK模組提供的預設畫面！<br/>
+	<br/>
+	功能描述：xxx
+</div>
+
+
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+        <title>線上行政系統--週報模組 v2.7b</title>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<meta content="IE=8" http-equiv="X-UA-Compatible">
+		
+		<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/css/week/module.css" type="text/css" rel="stylesheet">
+		<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/countdown/jquery.countdown.css" type="text/css" rel="stylesheet">
+		<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/thickbox/thickbox.css" type="text/css" rel="stylesheet">
+
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jquery144.js" type="text/javascript"></script><!--改使用jQuery-->
+		<script type="text/javascript">
+			var URL = 'http://divisionwork.cc.scu.edu.tw/oas/';
+			tm = 1321251274*1000+600000;
+			var time = new Date(tm);
+		</script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/clock.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/thickbox/thickbox.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/countdown/jquery.countdown.js" type="text/javascript"></script>
+		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/main.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<!--<div id="container">調整整體顯示區塊-->
+			<div id="blockTwo">
+				<div id="mainMenu"><!--來自系統選單（系統取得）<BR />-->
+					<ul class="forUpTime">
+		<li><a href="http://divisionwork.cc.scu.edu.tw/oas/week/index/index">編輯週報</a></li>
+	<li><a href="http://divisionwork.cc.scu.edu.tw/oas/week/index/list">查詢週報</a></li>
+	<li><a href="http://divisionwork.cc.scu.edu.tw/oas/">回首頁</a></li>
+	<li><a href="http://divisionwork.cc.scu.edu.tw/oas/index/logout">登出</a></li>
+</ul>				</div>
+				<div id="subMenu" class="blockTwo"><!--子功能選單（判斷是否有模組子功能）<BR />-->
+					<ul><div class="divTitle"><span class="menuTitle">子功能選單</span></div>
+		<li class="li_vertical_menu"><a href="http://divisionwork.cc.scu.edu.tw/oas/week/index/preview?keepThis=true&amp;TB_iframe=true&amp;height=600&amp;width=800" class="thickbox" title="週報模組" id="editPreview">編輯預覽</a></li><!--彈跳頁面-->
+	<li class="li_vertical_menu"><a href="#" id="editDownload">編輯輸出</a></li><!--彈直接下載畫面-->
+	</ul>				</div>
+				<div id="content"><!--主要內容區塊(表格為主)<BR />-->
+					<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/css/week/tableformat.css" type="text/css" rel="stylesheet">
+
+<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/jquery.download.js" type="text/javascript"></script>
+<!--2009-12-07 引入jQuery download讓IE可以觸發下載週報-->
+<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/week/tableEffect.js" type="text/javascript"></script>
+<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/week/menuClickEffect.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#editDownload").click(function(){
+			clickFileDownload("editDownload");
+			
+			countdownTimeUpdate();
+		});
+		//針對編輯輸出觸發產生Excel然後下載檔案！
+
+		$("#editPreview").click(function(){
+			$("#editPreview").attr('title', "週報模組--&lt;psan class='em'&gt;[]週次&lt;/span&gt;");
+			//針對 編輯預覽 顯示標題設定！(之後加入目前點選的顯示設計時一併完成)
+
+			countdownTimeUpdate();
+		});	
+
+		$(".menuOne &gt; ul &gt; li &gt; a").click(function(){
+			INDEX_ajaxChangeTable('content_edit', new Array($(this).attr('prev'), $(this).attr('next'), $(this).attr('workId')), 'menuOne');
+
+			countdownTimeUpdate();
+		});
+		//處理點選不同周次的處理！ 使用Ajax方式傳送參數到
+		
+		$("input[name^='input_']").blur(function(){
+			serchInputforCount(this.id, $(this).val(), URL+'week/index/updateweekhour');
+
+			countdownTimeUpdate();
+		}).keyup(function(e){
+			if(e.shiftKey == false &amp;&amp; 
+				(e.keyCode==37 || e.keyCode==38 || e.keyCode==39 || e.keyCode==40)
+			){
+				keyChangePosition(this.id, e.keyCode);
+				serchInputforCount(this.id, $(this).val(), URL+'week/index/updateweekhour');
+				countdownTimeUpdate();
+			}
+//				return false;
+		});
+		
+		$("textarea[name^='text_']").blur(function(){
+			ajaxChangeText(this.id, URL+'week/index/updateweekitem');
+
+			countdownTimeUpdate();
+		});
+		
+	});
+</script>
+
+<div class="menuOne">
+	<ul>
+	<div class="divTitle"><span class="menuTitle">選擇編輯週次</span></div>
+			<li class="li_vertical_menu"><a workid="9233" next="1321703999" prev="1321099200" href="#">11月13日</a></li>
+			<li class="li_vertical_menu"><a workid="9222" next="1321099199" prev="1320494400" href="#">11月06日</a></li>
+			<li class="li_vertical_menu"><a workid="9211" next="1320494399" prev="1319889600" href="#">10月30日</a></li>
+			<li class="li_vertical_menu"><a workid="9200" next="1319889599" prev="1319284800" href="#">10月23日</a></li>
+			<li class="li_vertical_menu"><a workid="9189" next="1319284799" prev="1318680000" href="#">10月16日</a></li>
+			<li class="li_vertical_menu"><a workid="9178" next="1318679999" prev="1318075200" href="#">10月09日</a></li>
+			<li class="li_vertical_menu"><a workid="9167" next="1318075199" prev="1317470400" href="#">10月02日</a></li>
+			<li class="li_vertical_menu"><a workid="9156" next="1317470399" prev="1316865600" href="#">09月25日</a></li>
+			<li class="li_vertical_menu"><a workid="9145" next="1316865599" prev="1316260800" href="#">09月18日</a></li>
+			<li class="li_vertical_menu"><a workid="9134" next="1316260799" prev="1315656000" href="#">09月11日</a></li>
+			<li class="li_vertical_menu"><a workid="9118" next="1315655999" prev="1315051200" href="#">09月04日</a></li>
+		
+	</ul>
+</div>
+
+<form method="post" name="f2" id="f2">
+<table cellspacing="0" cellpadding="1" class="out outOne">
+<tbody><tr><td><table cellspacing="1" cellpadding="0" border="0" class="in">
+		<tbody><tr>
+			<td colspan="9" rowspan="1" class="td_title">網路組工時統計表（單位：小時）</td>
+		<!--<td class="td_title" rowspan="1" colspan="9">網路組工時統計表（單位：小時）</td>-->
+		</tr>
+		<tr>
+			
+			<td colspan="1" rowspan="2" class="td_title t0">&nbsp;</td>
+			
+			<td colspan="2" rowspan="1" class="td_title t1">伺服器</td>
+			
+			<td colspan="2" rowspan="1" class="td_title t2">網路</td>
+			
+			<td colspan="1" rowspan="2" class="td_title t3">技術諮詢</td>
+			
+			<td colspan="1" rowspan="2" class="td_title t4">行政事務</td>
+			
+			<td colspan="1" rowspan="2" class="td_title t5">其他</td>
+			
+			<td colspan="1" rowspan="2" class="td_title t6">小計</td>
+				</tr>	
+		<tr>
+			
+			<td colspan="1" rowspan="1" class="td_title">建置</td>
+			
+			<td colspan="1" rowspan="1" class="td_title">維修</td>
+			
+			<td colspan="1" rowspan="1" class="td_title">建置</td>
+			
+			<td colspan="1" rowspan="1" class="td_title">維修</td>
+				</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">校長室</td>
+																	<td class="td_normal">
+					<input type="text" id="input_0_0" name="input_0_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_0_1" name="input_0_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_0_2" name="input_0_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_0_3" name="input_0_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_0_4" name="input_0_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_0_5" name="input_0_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_0_6" name="input_0_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_0_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_0_7" name="input_0_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">教務處</td>
+																	<td class="td_normal">
+					<input type="text" id="input_1_0" name="input_1_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_1_1" name="input_1_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_1_2" name="input_1_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_1_3" name="input_1_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_1_4" name="input_1_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_1_5" name="input_1_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_1_6" name="input_1_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_1_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_1_7" name="input_1_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">學生事務處</td>
+																	<td class="td_normal">
+					<input type="text" id="input_2_0" name="input_2_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_2_1" name="input_2_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_2_2" name="input_2_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_2_3" name="input_2_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_2_4" name="input_2_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_2_5" name="input_2_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_2_6" name="input_2_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_2_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_2_7" name="input_2_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">總務處</td>
+																	<td class="td_normal">
+					<input type="text" id="input_3_0" name="input_3_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_3_1" name="input_3_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_3_2" name="input_3_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_3_3" name="input_3_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_3_4" name="input_3_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_3_5" name="input_3_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_3_6" name="input_3_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_3_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_3_7" name="input_3_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">發展處</td>
+																	<td class="td_normal">
+					<input type="text" id="input_4_0" name="input_4_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_4_1" name="input_4_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_4_2" name="input_4_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_4_3" name="input_4_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_4_4" name="input_4_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_4_5" name="input_4_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_4_6" name="input_4_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_4_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_4_7" name="input_4_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">研究事務與國際合作處</td>
+																	<td class="td_normal">
+					<input type="text" id="input_5_0" name="input_5_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_5_1" name="input_5_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_5_2" name="input_5_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_5_3" name="input_5_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_5_4" name="input_5_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_5_5" name="input_5_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_5_6" name="input_5_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_5_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_5_7" name="input_5_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">秘書室</td>
+																	<td class="td_normal">
+					<input type="text" id="input_6_0" name="input_6_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_6_1" name="input_6_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_6_2" name="input_6_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_6_3" name="input_6_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_6_4" name="input_6_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_6_5" name="input_6_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_6_6" name="input_6_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_6_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_6_7" name="input_6_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">人事室</td>
+																	<td class="td_normal">
+					<input type="text" id="input_7_0" name="input_7_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_7_1" name="input_7_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_7_2" name="input_7_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_7_3" name="input_7_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_7_4" name="input_7_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_7_5" name="input_7_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_7_6" name="input_7_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_7_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_7_7" name="input_7_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">會計室</td>
+																	<td class="td_normal">
+					<input type="text" id="input_8_0" name="input_8_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_8_1" name="input_8_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_8_2" name="input_8_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_8_3" name="input_8_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_8_4" name="input_8_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_8_5" name="input_8_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_8_6" name="input_8_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_8_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_8_7" name="input_8_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">圖書館</td>
+																	<td class="td_normal">
+					<input type="text" id="input_9_0" name="input_9_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_9_1" name="input_9_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_9_2" name="input_9_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_9_3" name="input_9_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_9_4" name="input_9_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_9_5" name="input_9_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_9_6" name="input_9_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_9_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_9_7" name="input_9_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">體育室</td>
+																	<td class="td_normal">
+					<input type="text" id="input_10_0" name="input_10_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_10_1" name="input_10_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_10_2" name="input_10_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_10_3" name="input_10_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_10_4" name="input_10_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_10_5" name="input_10_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_10_6" name="input_10_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_10_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_10_7" name="input_10_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">軍訓室</td>
+																	<td class="td_normal">
+					<input type="text" id="input_11_0" name="input_11_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_11_1" name="input_11_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_11_2" name="input_11_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_11_3" name="input_11_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_11_4" name="input_11_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_11_5" name="input_11_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_11_6" name="input_11_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_11_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_11_7" name="input_11_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">校牧室</td>
+																	<td class="td_normal">
+					<input type="text" id="input_12_0" name="input_12_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_12_1" name="input_12_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_12_2" name="input_12_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_12_3" name="input_12_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_12_4" name="input_12_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_12_5" name="input_12_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_12_6" name="input_12_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_12_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_12_7" name="input_12_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">教學資源中心</td>
+																	<td class="td_normal">
+					<input type="text" id="input_13_0" name="input_13_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_13_1" name="input_13_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_13_2" name="input_13_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_13_3" name="input_13_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_13_4" name="input_13_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_13_5" name="input_13_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_13_6" name="input_13_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_13_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_13_7" name="input_13_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">通識教育中心</td>
+																	<td class="td_normal">
+					<input type="text" id="input_14_0" name="input_14_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_14_1" name="input_14_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_14_2" name="input_14_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_14_3" name="input_14_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_14_4" name="input_14_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_14_5" name="input_14_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_14_6" name="input_14_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_14_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_14_7" name="input_14_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">人文社會學院</td>
+																	<td class="td_normal">
+					<input type="text" id="input_15_0" name="input_15_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_15_1" name="input_15_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_15_2" name="input_15_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_15_3" name="input_15_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_15_4" name="input_15_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_15_5" name="input_15_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_15_6" name="input_15_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_15_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_15_7" name="input_15_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">外國語文學院</td>
+																	<td class="td_normal">
+					<input type="text" id="input_16_0" name="input_16_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_16_1" name="input_16_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_16_2" name="input_16_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_16_3" name="input_16_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_16_4" name="input_16_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_16_5" name="input_16_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_16_6" name="input_16_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_16_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_16_7" name="input_16_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">理學院</td>
+																	<td class="td_normal">
+					<input type="text" id="input_17_0" name="input_17_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_17_1" name="input_17_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_17_2" name="input_17_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_17_3" name="input_17_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_17_4" name="input_17_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_17_5" name="input_17_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_17_6" name="input_17_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_17_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_17_7" name="input_17_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">法學院</td>
+																	<td class="td_normal">
+					<input type="text" id="input_18_0" name="input_18_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_18_1" name="input_18_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_18_2" name="input_18_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_18_3" name="input_18_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_18_4" name="input_18_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_18_5" name="input_18_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_18_6" name="input_18_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_18_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_18_7" name="input_18_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">推廣部</td>
+																	<td class="td_normal">
+					<input type="text" id="input_19_0" name="input_19_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_19_1" name="input_19_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_19_2" name="input_19_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_19_3" name="input_19_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_19_4" name="input_19_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_19_5" name="input_19_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_19_6" name="input_19_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_19_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_19_7" name="input_19_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">電算中心</td>
+																	<td class="td_normal">
+					<input type="text" id="input_20_0" name="input_20_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_20_1" name="input_20_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_20_2" name="input_20_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_20_3" name="input_20_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_20_4" name="input_20_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_20_5" name="input_20_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_20_6" name="input_20_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_20_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_20_7" name="input_20_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">商學院</td>
+																	<td class="td_normal">
+					<input type="text" id="input_21_0" name="input_21_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_21_1" name="input_21_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_21_2" name="input_21_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_21_3" name="input_21_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_21_4" name="input_21_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_21_5" name="input_21_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_21_6" name="input_21_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_21_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_21_7" name="input_21_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">東吳大學全校</td>
+																	<td class="td_normal">
+					<input type="text" id="input_22_0" name="input_22_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_22_1" name="input_22_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_22_2" name="input_22_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_22_3" name="input_22_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_22_4" name="input_22_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_22_5" name="input_22_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_22_6" name="input_22_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_22_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_22_7" name="input_22_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">其他單位</td>
+																	<td class="td_normal">
+					<input type="text" id="input_23_0" name="input_23_0" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_23_1" name="input_23_1" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_23_2" name="input_23_2" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_23_3" name="input_23_3" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_23_4" name="input_23_4" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_23_5" name="input_23_5" value="0.0" class="normal">			
+				</td>
+								
+																	<td class="td_normal">
+					<input type="text" id="input_23_6" name="input_23_6" value="0.0" class="normal">			
+				</td>
+								
+																	<td id="td_23_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_23_7" name="input_23_7" value="0.0" class="">			
+				</td>
+								
+					</tr>
+			
+		<tr style="border:1px solid #000;">
+			<td colspan="1" rowspan="1" class="td_title">小計</td>
+													<td id="td_24_0" class="td_normal">
+					<input type="text" readonly="readonly" id="input_24_0" name="input_24_0" value="0.0" class="">
+				</td>
+				
+													<td id="td_24_1" class="td_normal">
+					<input type="text" readonly="readonly" id="input_24_1" name="input_24_1" value="0.0" class="">
+				</td>
+				
+													<td id="td_24_2" class="td_normal">
+					<input type="text" readonly="readonly" id="input_24_2" name="input_24_2" value="0.0" class="">
+				</td>
+				
+													<td id="td_24_3" class="td_normal">
+					<input type="text" readonly="readonly" id="input_24_3" name="input_24_3" value="0.0" class="">
+				</td>
+				
+													<td id="td_24_4" class="td_normal">
+					<input type="text" readonly="readonly" id="input_24_4" name="input_24_4" value="0.0" class="">
+				</td>
+				
+													<td id="td_24_5" class="td_normal">
+					<input type="text" readonly="readonly" id="input_24_5" name="input_24_5" value="0.0" class="">
+				</td>
+				
+													<td id="td_24_6" class="td_normal">
+					<input type="text" readonly="readonly" id="input_24_6" name="input_24_6" value="0.0" class="">
+				</td>
+				
+													<td id="td_24_7" class="td_normal">
+					<input type="text" readonly="readonly" id="input_24_7" name="input_24_7" value="0.0" class="">
+				</td>
+				
+					</tr>
+		</tbody></table></td></tr>
+</tbody></table>
+
+<!--進度說明-->
+<table cellspacing="0" cellpadding="1" class="out">
+<tbody><tr><td><table cellspacing="1" cellpadding="0" border="0" class="in">
+		<tbody><tr>
+			<td colspan="2" rowspan="1" class="td_title">進度說明</td>
+		</tr>
+					
+		<tr>
+			<td colspan="1" rowspan="1" class="td_title t_statement">文件</td>
+			<td class="td_normal">
+			<textarea wrap="soft" rows="5" cols="50" id="text_文件" name="text_文件">由系統自動產生內容</textarea>
+			</td>
+		</tr>
+					
+		<tr>
+			<td colspan="1" rowspan="1" class="td_title t_statement">會議</td>
+			<td class="td_normal">
+			<textarea wrap="soft" rows="5" cols="50" id="text_會議" name="text_會議">由系統自動產生內容</textarea>
+			</td>
+		</tr>
+					
+		<tr>
+			<td colspan="1" rowspan="1" class="td_title t_statement">維修</td>
+			<td class="td_normal">
+			<textarea wrap="soft" rows="5" cols="50" id="text_維修" name="text_維修">由系統自動產生內容</textarea>
+			</td>
+		</tr>
+					
+		<tr>
+			<td colspan="1" rowspan="1" class="td_title t_statement">建置</td>
+			<td class="td_normal">
+			<textarea wrap="soft" rows="5" cols="50" id="text_建置" name="text_建置">由系統自動產生內容</textarea>
+			</td>
+		</tr>
+					
+		<tr>
+			<td colspan="1" rowspan="1" class="td_title t_statement">其他</td>
+			<td class="td_normal">
+			<textarea wrap="soft" rows="5" cols="50" id="text_其他" name="text_其他">由系統自動產生內容</textarea>
+			</td>
+		</tr>
+		</tbody></table></td></tr>
+</tbody></table>
+
+<!--2009-10-06 k1 ting要球顯示說明-->
+<!--注意事項-->
+<table cellspacing="0" cellpadding="1" class="out">
+<tbody><tr><td><table cellspacing="1" cellpadding="0" border="0" class="in">
+		<tbody><tr>
+			<td colspan="1" rowspan="1" class="td_title">說明</td>
+		</tr>
+		<tr>
+			<td class="td_normal">
+				<ol>
+				
+					<li>凡處理全校性伺服器/網路所屬之相關問題，服務單位為[東吳大學全校]。</li>
+				
+					<li>個人休假、請假未列於本表中。</li>
+				
+					<li>凡開會、參加研討會等無法歸類於技術或行政業務之工作均屬主辦單位之其他。</li>
+				
+					<li>不屬於學校編制內之一級單位（如：錢穆故居..）屬其他。</li>
+				
+					<li>電算中心項目包括：組內會議、組內行政事項（如：網路技術、行政處理原則、環境整理）之討論。</li>
+							</ol>
+			</td>
+		</tr>
+</tbody></table></td></tr>
+</tbody></table>
+
+</form>
+
+</div>				</div>
+			
+			<div id="blockOne">
+				<div id="topInfo"><!-- 內容來自於系統部份 logo與clock區塊<BR />-->
+					<img border="0" title="線上行政系統" src="http://divisionwork.cc.scu.edu.tw/oas/theme/img/oas/oasLogo.gif" class="logo">
+					<div id="clock">14:38:34</div>
+				</div>
+				<div id="message"><!--部份來自系統（驗證資訊）部份來自模組 登入選息區塊<BR />-->
+				<span class="em">tsung</span> 您好！<br>
+	<!--		您上次從  於  登入 <BR /> -->
+				目前位置 <span class="em">週報模組 &gt; 編輯週報</span>
+				<div id="moduleMsg">本週次 11月13日到11月19日<br><span class="em">編輯週次 11月13日到11月19日</span></div>
+				<div id="runtimeMsg"></div>
+				<div class="countdown" id="time"></div>
+				</div>
+			</div>
+		<!--</div>-->
+	
+</body></html>

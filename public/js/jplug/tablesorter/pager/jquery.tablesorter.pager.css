@@ -1,0 +1,31 @@
+div.tablesorterPager {
+	padding: 10px 0 10px 0;
+	background-color: #D6D2C2;
+	text-align: center;
+}
+div.tablesorterPager span {
+	padding: 0 5px 0 5px;
+}
+div.tablesorterPager input.prev {
+	width: auto;
+	margin-right: 10px;
+}
+div.tablesorterPager input.next {
+	width: auto;
+	margin-left: 10px;
+}
+div.tablesorterPager input {
+	font-size: 8px;
+	width: 50px;
+	border: 1px solid #330000;
+	text-align: center;
+}
+
+/* tablelist pager 樣式修改 */
+.pager img{ vertical-align: bottom; }
+
+.pager .pagedisplay{ 
+	width:3em; 
+	height:0.9em; 
+	vertical-align: text-top;
+}

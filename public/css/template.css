@@ -1,0 +1,109 @@
+body {
+	margin:0;
+	padding:0;
+	font-size:1em;
+}
+
+ul{
+	border:none;
+	list-style:none;
+}
+div#container{
+	margin:0 auto;
+}
+
+div#top{
+	position:relative;
+	height:80px;
+
+}
+
+h1, h2, p{ text-indent:-999px;} /*讓文字移出畫面看不到藉以用圖片顯示！！*/
+
+	#copyright{
+		position:absolute;
+		background:url('../img/oas/powerbyk1.png') top center no-repeat;
+		width:80px; 
+		height:14px; 
+		bottom:0;
+		right:30%;
+	}
+	
+div#main{
+	position:relative;
+	background:url('../img/oas/midBk.png') top center no-repeat;
+	width:100%;
+	height:419px;
+}
+	h1{
+		position:absolute;
+		background:url('../img/oas/oasText.gif') top center no-repeat;
+		width:398px;
+		height:176px;
+		left:55px;
+		top:150px;
+	}
+	
+	h2{
+		position:absolute;
+		background:url('../img/oas/oasLogo.gif') top center no-repeat;
+		width:191px;
+		height:24px;
+		left:376px;
+		top:125px;
+	}
+
+
+div#navigation{
+	float:left;
+	left:100px;
+	width:60%;
+	margin-left:50px;
+	text-indent:2em;
+	line-height:1.5em;
+}
+	.em{
+		font-size:1.2em;
+		color:#FF0000;
+	}
+	#navigation ul li{
+		display:inline;
+		margin-left:30px;
+	}
+	#navigation ul li.frist{
+		margin-left:60px;
+	}			
+	
+div#login{
+	position:relative;
+	float:left;
+	left:110px;
+	margin-top:-30px;
+	z-index:1;
+}
+ div#processBar{
+ 	display:none;
+ }
+	td{
+		line-height:38px;
+	}
+	td#loginTitle{
+		background:url('../img/oas/loginMsg.png') top center no-repeat;
+		text-indent:-9999px;
+	}
+	
+	input{
+		width:123px;
+		height:27px;
+		border:none;
+		padding:4px 0px 0px 8px;
+	}
+	
+	.inputBk{
+		background:url('../img/oas/loginTB.png') top center no-repeat;
+	}
+	
+	.inputBkHov{
+		background:url('../img/oas/loginTBHover.png') top center no-repeat;
+	}
+	
