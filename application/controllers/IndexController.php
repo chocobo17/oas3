@@ -33,7 +33,9 @@ class IndexController extends Zend_Controller_Action
 	 */	
     public function indexAction()	
     {
-    	echo "這是預設入口畫面！";
+    	
+		echo "測試用";
+		
 		
     }
 
