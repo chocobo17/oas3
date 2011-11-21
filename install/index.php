@@ -9,6 +9,7 @@ defined('APPLICATION_ENV') || define('APPLICATION_ENV', (getenv('APPLICATION_ENV
 //設定此應用系統SESSION名稱（通常用專案名）
 defined('APPLICATION_SESSION') || define('APPLICATION_SESSION', 'HOTRENT');
 
+
 // Ensure library/ is on include_path
 set_include_path(implode(PATH_SEPARATOR, array(
 											    realpath(APPLICATION_PATH . '/../library'), 
