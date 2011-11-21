@@ -13,7 +13,7 @@
  * 1. APPLICATION_ENV: 影響套用application.ini內的區塊，若正式上線使用online，否則使用devel。
  * 2. APPLICATION_SESSION: 可任意設定，通常設定專案程式英文名稱。
  */
-//test
+//test123
 
 // Define path to application directory
 defined('APPLICATION_PATH') || define('APPLICATION_PATH', realpath(dirname(__FILE__) . '/application'));
