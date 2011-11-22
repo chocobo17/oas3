@@ -3,6 +3,8 @@
 class System_Model_Access extends Zend_Db_Table_Abstract
 {
 	protected $_name = 'access';
+	
+	protected 
 
 	protected $_primary = 'accessId';
 

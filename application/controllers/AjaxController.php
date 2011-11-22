@@ -43,9 +43,10 @@ class AjaxController extends Zend_Controller_Action
 		else{
     	
 		$adapter = new Zend_Auth_Adapter_DbTable();
+		
 		$adapter->setTableName('user')
 				->setIdentityColumn('userId')
-				->setCredentialColumn('password')
+				->setCredentialColumn(  'password')
 				->setCredentialTreatment('MD5(?)');
 				
 		$res = $adapter->setIdentity( $this->getRequest()->getParam('username') )
