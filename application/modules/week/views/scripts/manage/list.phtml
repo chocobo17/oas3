@@ -1,116 +1,25 @@
 <style type="text/css">
 </style>
-<script type="text/javascript">
-$(function(){
-});
-</script>
 
-<!-- 2011-11-10 預設模組各個Action Views內容架構 -->
-<div id="content">
-     list這是WEEK模組提供的預設畫面！<br/>
-	<br/>
-	功能描述：xxx
-</div>
 <html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
         <title>線上行政系統--週報模組 v2.7b</title>
-		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-		<meta content="IE=8" http-equiv="X-UA-Compatible">
 		
-		<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/css/week/module.css" type="text/css" rel="stylesheet">
-		<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/countdown/jquery.countdown.css" type="text/css" rel="stylesheet">
-		<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/thickbox/thickbox.css" type="text/css" rel="stylesheet">
-
-		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jquery144.js" type="text/javascript"></script><!--改使用jQuery-->
-		<script type="text/javascript">
-			var URL = 'http://divisionwork.cc.scu.edu.tw/oas/';
-			tm = 1321251274*1000+600000;
-			var time = new Date(tm);
-		</script>
-		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/clock.js" type="text/javascript"></script>
-		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/thickbox/thickbox.js" type="text/javascript"></script>
-		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/countdown/jquery.countdown.js" type="text/javascript"></script>
-		<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/main.js" type="text/javascript"></script>
+		
 	</head>
 	<body>
-		<!--<div id="container">調整整體顯示區塊-->
-			<div id="blockTwo">
-				<div id="mainMenu"><!--來自系統選單（系統取得）<BR />-->
-					<ul class="forUpTime">
-		<li><a href="http://divisionwork.cc.scu.edu.tw/oas/week/index/index">編輯週報</a></li>
-	<li><a href="http://divisionwork.cc.scu.edu.tw/oas/week/index/list">查詢週報</a></li>
-	<li style="background: url(&quot;/oas/theme/img/oas/listicon.jpg&quot;) no-repeat scroll 0% 0% transparent;"><a href="http://divisionwork.cc.scu.edu.tw/oas/" style="color: rgb(41, 41, 225);">回首頁</a></li>
-	<li style="background: url(&quot;/oas/theme/img/oas/listicon.jpg&quot;) no-repeat scroll 0% 0% transparent;"><a href="http://divisionwork.cc.scu.edu.tw/oas/index/logout" style="color: rgb(41, 41, 225);">登出</a></li>
+	
+		<li><a href="http://oas.cc.scu.edu.tw/oas/week/manage/index">編輯週報</a></li>
+	<li><a href="http://oas.cc.scu.edu.tw/oas/week/manage/list">查詢週報</a></li>
+	<li style="background: url(&quot;/oas/theme/img/oas/listicon.jpg&quot;) no-repeat scroll 0% 0% transparent;"><a href="http://oas.cc.scu.edu.tw/oas/" style="color: rgb(41, 41, 225);">回首頁</a></li>
+	<li style="background: url(&quot;/oas/theme/img/oas/listicon.jpg&quot;) no-repeat scroll 0% 0% transparent;"><a href="http://oas.cc.scu.edu.tw/oas/index/logout" style="color: rgb(41, 41, 225);">登出</a></li>
 </ul>				</div>
 				<div id="subMenu" class="blockTwo"><!--子功能選單（判斷是否有模組子功能）<BR />-->
 					<ul><div class="divTitle"><span class="menuTitle">子功能選單</span></div>
 		<li class="li_vertical_menu"><a workid="9233" next="1321703999" prev="1321099200" href="#">本週預覽</a></li>
 	<!--本週預覽的查詢語法同寫在content_query.html內-->
-	<li class="li_vertical_menu"><a href="http://divisionwork.cc.scu.edu.tw/oas/week/index/advancequery?keepThis=true&amp;height=500&amp;width=500&amp;modal=true&amp;TB_iframe=true" class="thickbox" title="週報模組" id="queryCondition">條件查詢</a></li>
+	<li class="li_vertical_menu"><a href="http://oas.cc.scu.edu.tw/oas/week/manage/advancequery?keepThis=true&amp;height=500&amp;width=500&amp;modal=true&amp;TB_iframe=true" class="thickbox" title="週報模組" id="queryCondition">條件查詢</a></li>
 	</ul>				</div>
-				<div id="content"><!--主要內容區塊(表格為主)<BR />-->
-					<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/css/week/tableformat.css" type="text/css" rel="stylesheet">
-
-<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/jquery.dump.js" type="text/javascript"></script>
-<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/week/menuClickEffect.js" type="text/javascript"></script>
-<script type="text/javascript">
-	function INDEX_ajaxADqueryChangeTable(dataString){
-		if(dataString){
-			$.ajax({
-				url: URL+"week/ajax/adquery",
-				type:'POST',
-				data:dataString,
-				dataType:'json',
-				timeout:5000,	//超過5秒呼叫error callback
-				success: function(responce){
-					if(responce.weekMsg != undefined){
-						alert(responce.weekMsg)
-						$(".menuResult").empty();
-					}else if(responce.html){
-						
-						$(".menuResult").html(responce.html);
-						//將回傳選單附在某處！！
-
-//						$('.mResultLink').each(function(){
-//							$(this).bind('click', function(){
-//							INDEX_ajaxChangeTable('submenu_adquery' , new Array($(this).attr('prev'), 
-//													$(this).attr('next'), 
-//													$(this).attr('workId'),
-//													$(this).attr('who')), 'mResultLink')
-//							});
-//						});
-						
-						$("#adRes").change(function(){
-							INDEX_ajaxChangeTable('submenu_adquery' , new Array($("#adRes option:selected").attr('prev'), 
-													$("#adRes option:selected").attr('next'), 
-													$("#adRes option:selected").attr('workId'),
-													$("#adRes option:selected").attr('who')), 'mResultLink')
-						});
-						//處理選單的改變！
-					}
-				},
-				error: function(xhr){
-					$("#runtimeMsg").html("&lt;span class='em'&gt;發生Ajax錯誤，代碼："+xhr.statusText+"&lt;/span&gt;").fadeOut(2000, function(){
-						$("#runtimeMsg &gt; span").remove();
-						$("#runtimeMsg").fadeIn();
-					});
-				}
-			});
-		}
-	}
-	$(document).ready(function(){
-		$(".li_vertical_menu &gt; a[href='#']").click(function(){
-			INDEX_ajaxChangeTable('submenu_query', new Array($(this).attr('prev'), $(this).attr('next'), $(this).attr('workId')));
-
-			countdownTimeUpdate();
-		});
-		//處理點選不同週次查詢處理！ 使用Ajax方式傳送參數
-		
-		$("#queryCondition").click(function(){
-			countdownTimeUpdate();
-		});
-	});
-</script>
-
+				
 
 <div class="menuOne">
 	<ul>
@@ -128,7 +37,7 @@ $(function(){
 	</ul>
 </div>
 
-<span class="menuResult">&nbsp;</span><!--當使用進階查詢後，處理顯示查詢的結果清單，進行點選後變化頁面-->
+
 
 <table cellspacing="0" cellpadding="1" class="out">
 <tbody><tr><td><table cellspacing="1" cellpadding="0" border="0" class="in">
@@ -901,18 +810,11 @@ $(function(){
 			</div>
 			<div id="blockOne">
 				<div id="topInfo"><!-- 內容來自於系統部份 logo與clock區塊<BR />-->
-					<img border="0" title="線上行政系統" src="http://divisionwork.cc.scu.edu.tw/oas/theme/img/oas/oasLogo.gif" class="logo">
+					<img border="0" title="線上行政系統" src="http://oas.cc.scu.edu.tw/oas/theme/img/oas/oasLogo.gif" class="logo">
 					<div id="clock">09:30:22</div>
 				</div>
 				<div id="message"><!--部份來自系統（驗證資訊）部份來自模組 登入選息區塊<BR />-->
 				<span class="em">tsung</span> 您好！<br>
-	<!--		您上次從  於  登入 <BR /> -->
-				目前位置 <span class="em">週報模組 &gt; 查詢週報</span>
-				<div id="moduleMsg">本週次 11月13日到11月19日<br><span class="em">查詢週次 11月13日到11月19日</span></div>
-				<div id="runtimeMsg"></div>
-				<div class="countdown" id="time"></div>
-				</div>
-			</div>
-		<!--</div>-->
+
 	
 </body></html>
