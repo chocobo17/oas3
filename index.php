@@ -1,4 +1,3 @@
-dwkjdlkwajdlkwmlmalwmd
 <?php
 /**
  * 2011-11-10
