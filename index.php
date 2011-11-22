@@ -1,8 +1,4 @@
-
-<html>
-	<head>
-		<title>oas 周月報系統 3.0</title>
-	</head>
+dwkjdlkwajdlkwmlmalwmd
 <?php
 /**
  * 2011-11-10
