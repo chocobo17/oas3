@@ -3,78 +3,7 @@
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 		<meta content="IE=8" http-equiv="X-UA-Compatible">
 		
-		<link media="screen" href="http://oas.cc.scu.edu.tw/oas/theme/css/month/module.css" type="text/css" rel="stylesheet">
-		<link media="screen" href="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/countdown/jquery.countdown.css" type="text/css" rel="stylesheet">
-		<link media="screen" href="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/thickbox/thickbox.css" type="text/css" rel="stylesheet">
-		<link charset="utf-8" type="text/css" href="/oas/theme/js/jplug/monthpicker/monthpicker.css" rel="stylesheet">
-		<link href="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/datepicker.css" rel="stylesheet">
-		
-		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/dateFormatFix.js" type="text/javascript"></script>
-		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jquery132.js" type="text/javascript"></script>
-		<script type="text/javascript">
-			var URL = 'http://oas.cc.scu.edu.tw/oas/';
-			var nowMain = '工作重點';
-		</script>
-		<!--<script type="text/javascript" src="http://oas.cc.scu.edu.tw/oas/theme/js/clock.js"></script>-->
-		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/jquery.dump.js" type="text/javascript"></script>
-		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/countdown/jquery.countdown.js" type="text/javascript"></script>
-		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/thickbox/thickbox.js" type="text/javascript"></script>
-		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/monthpicker/monthpicker.js" type="text/javascript"></script>
-		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/date.js" type="text/javascript"></script>
-		<!--[if IE]><script type="text/javascript" src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/jquery.bgiframe.js"></script><![endif]-->
-		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/jplug/datepicker/jquery.datepicker.js" type="text/javascript"></script>
-		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/month/monthpicker.js" type="text/javascript"></script>
-		<script src="http://oas.cc.scu.edu.tw/oas/theme/js/month/remove_item.js" type="text/javascript"></script>
-		<script type="text/javascript">
-
-//			tm_tmp = '1321251274';
-//			tm = parseInt(tm_tmp)*1000+60000000;
-//			var time = new Date(tm);
-			
-			Date.firstDayOfWeek = 0;
-			Date.format = 'yyyy-mm-dd';
-			var date = new Date();
-			//設定編輯或彙整顯示年月份
-			
-			var theyear=parseInt('2011');
-			var themonth=parseInt('11');
-			
-			//設定彙整年月份，在submenu_output.html會用到
-			var outputyear = parseInt("");
-			var outputmonth = parseInt("");
-			
-			$(function(){	
-				
-				set_Edit_MonthPicker();	//submenu_broke、submenu_work
-				
-				setOutputMonthPicker();	//submenu_output
-				
-				//修正MonthPicker.js在thickbox內出現會有異常狀況
-				$(".tyear").hover(function(){
-					$(".MonthPicker ul ul").css('visibility','visible');
-				},function(){
-					$(".MonthPicker ul ul").css('visibility','hidden');
-				});
-
-				$("#mainMenu ul li a").hover(function(){
-					$(this).css('color', '#89dc33'); //綠色強調！
-					$(this).parent().css('background',"url('/oas/theme/img/oas/listicon4.png\') no-repeat");
-				}, function(){
-					$(this).css('color', '#920783'); //紫色字體！
-					$(this).parent().css('background',"url('/oas/theme/img/oas/listicon3.png') no-repeat");
-				});
-				//主選單的hover功能
-				
-				$(".tr-list").hover(
-					function(){
-						$(this).css({'background-color':'#FFFFEE','color':'#79006F'});	
-					}, 
-					function(){
-						$(this).css({'background-color':'#FFF','color':'#929292'});	
-				});
-				//2010-04-27 k1 表格欄位的hover設定
-			});
-		</script>
+	
 	</head>
 	
 	<body>
@@ -101,70 +30,10 @@
 				</div>
 				
 					<link media="screen" href="http://oas.cc.scu.edu.tw/oas/theme/css/month/content-format.css" type="text/css" rel="stylesheet">
-<script type="text/javascript">
-	$(function(){
-		$("#proc-insert").click(function(){
-			$.ajax({
-				url:URL+'month/workpoint/process',
-				type:'POST',
-				data:decodeURI($("form[name='work-from-insert']").serialize()),
-				dataType:'json',
-				beforeSend:function(XHR){
-					$("#proc-insert").css("disabled","disabled");
-				},
-				success:function(data){
-					$("#nowDisplay").text(data.display);
-					$("#runtimeMsg").html("&lt;span class='em_msg'&gt;"+data.msg+"&lt;/span&gt;").fadeOut(1500, function(){
-						$("#runtimeMsg &gt; span").remove();
-						$("#runtimeMsg").fadeIn('fast', function(){
-							window.location=URL+'month/index/workpoint';
-						});
-					});	
-					
-				},
-				error:function(XHR){
-					alert(XHR.status);
-				},
-				complete:function(XHR){
-					$("#proc-insert").css("disabled","");
-				}
-			});
-		});
-	});
 
-	function remove_empty_table()
-	{
-		$.each($("table[class^='table-']"), function(e){
-			var tr_amount = $(this).children().children().size();
-			if(tr_amount == 1){ //只有標題列
-				$(this).parent().parent().css('display','none');
-				//不用remove是為了設定編輯月份，更新Table
-			}
-		});
-	}
-
-function adquery_changeDivContent(data){
-	$("#content-work").empty().html(data);
-}
-
-	$(function(){
-		$("legend").css({'cursor':'pointer','color':'#89dc33'}).click(function(){
-			$(this).parent().children().filter("[class^='field-']").toggle(900);
-		});
-		//針對欄位區塊的標題實做點選 顯示/隱藏 功能！
-		
-		remove_empty_table();
-		
-		$("a[id^='remove-work']").click(function(){
-			_process_item_remove( this.id , 'remove-work-', '工作重點-刪除', URL+'month/workpoint/process');
-		});
-
-	});
-</script>
-<script src="http://oas.cc.scu.edu.tw/oas/theme/js/month/box_workback.js" type="text/javascript"></script>
 
 <div class="month-query-block">	
-<a href="http://oas.cc.scu.edu.tw/oas/month/workpoint/adquery?keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" id="proc-query" title="月報模組--查詢紀錄">查詢工作重點</a>
+<a href="http://oas.cc.scu.edu.tw/oas/month/manage/workquery" class="thickbox" id="proc-query" title="月報模組--查詢紀錄">查詢工作重點</a>
 </div>
 <span class="month-picker-block">
 	設定編輯年月份
@@ -204,7 +73,7 @@ function adquery_changeDivContent(data){
 					<td id="3172-user">tsung</td>
 					<td align="center">
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
-						<a href="http://oas.cc.scu.edu.tw/oas/month/workpoint/update?itemid=3172&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=450&amp;width=500" class="thickbox" title="工作重點--修改" id="update-3172">
+						<a href="http://oas.cc.scu.edu.tw/oas/month/manage/workupdate"thickbox" title="工作重點--修改" id="update-3172">
 			修改</a>&nbsp;
 				<a href="#" title="工作重點--刪除" id="remove-work-3172">刪除</a>
 							</td>
