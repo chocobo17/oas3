@@ -11,12 +11,17 @@ $(function(){
 
 <div id="content">
 	有產生Zend_Views!test
+	<form action="post" name="login1" method="post">
+	
 	<p>
 	帳號：<input name="account"type="text" value="輸入帳號"/>
 	</p>
 	<p>
 	密碼：<input name="pwd" type="password" />
 	</p>
+	<input type="reset" value="送出" name="submit1"/>
+	<input type="submit" value="清除" name="reset1"/>
+	</form>
 </div>
 <?
  echo $this
