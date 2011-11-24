@@ -17,19 +17,19 @@ $(function(){
 	</head>
 	
 	<body>
-		<div class="mask"><img border="0" src="/oas/theme/img/oas/process/loadingAnimation.gif"></div>
+		
 
 			<div id="blockTwo">
 
 				<div id="mainMenu"><!--來自系統選單（系統取得）<BR />-->
-					<img border="0" title="線上行政系統" src="http://divisionwork.cc.scu.edu.tw/oas/theme/img/oas/oasLogo.gif" class="logo">
+					
 					<ul class="main-ul">
-						<li><a href="http://divisionwork.cc.scu.edu.tw/oas/month/index/brokepoint">斷線紀錄</a></li>
-						<li><a href="http://divisionwork.cc.scu.edu.tw/oas/month/index/workpoint">工作重點</a></li>
+						<li><a href="http://oas.cc.scu.edu.tw/oas/month/manage/brokepoint">斷線紀錄</a></li>
+						<li><a href="http://oas.cc.scu.edu.tw/oas/month/manage/workpoint">工作重點</a></li>
 						<!--2010-02-24 k1 判斷可彙整權限-->
 												
-						<li><a href="http://divisionwork.cc.scu.edu.tw/oas/">回首頁</a></li>
-						<li><a href="http://divisionwork.cc.scu.edu.tw/oas/index/logout">登出</a></li>
+						<li><a href="http://oas.cc.scu.edu.tw/oas/">回首頁</a></li>
+						<li><a href="http://oas.cc.scu.edu.tw/oas/index/logout">登出</a></li>
 					</ul>
 				</div>
 				
@@ -39,54 +39,14 @@ $(function(){
 				<span id="moduleMsg">顯示<span class="em" id="nowDisplay"> 2011年10月</span> 月報資料 編輯 <span class="em" id="nowEdit">2011年11月</span> 月報資料</span><span id="runtimeMsg"></span>
 				</div>
 				
-					<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/css/month/content-format.css" type="text/css" rel="stylesheet">
-<link media="screen" href="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/tablesorter/blue/style.css" type="text/css" rel="stylesheet">
-
-<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/jplug/tablesorter/jquery.tablesorter.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("a[id^='remove-broke-']").bind('click', function(){
-			_process_item_remove( this.id , 'remove-broke-', '斷線紀錄-刪除', URL+'month/brokepoint/process');
-		});	
-		
-		$("#broke-table").tablesorter({
-			headers: {
-				6: {
-					sorter: false
-				},
-				2: {
-					sorter: false
-				}
-			}
-		});
-	});
-	
-	function adquery_changeDivContent(data){
-		$("#content-broke").empty().html(data);
-		
-		$("#broke-table").tablesorter({
-			headers: {
-				6: {
-					sorter: false
-				},
-				2: {
-					sorter: false
-				}
-			}
-		});
-		
-		tb_init("a.thickbox");
-	}
-</script>
-<script src="http://divisionwork.cc.scu.edu.tw/oas/theme/js/month/box_brokeback.js" type="text/javascript"></script>
-
+					
 <div class="month-query-block">	
-<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/adquery?keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" id="proc-query" title="月報模組--查詢紀錄">查詢斷線紀錄</a>
+<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/adquery?keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" id="proc-query" title="月報模組--查詢紀錄">查詢斷線紀錄</a>
 </div>
 <span class="month-picker-block">
 	設定編輯年月份
 	<div id="monthpicker" class="MonthPicker"><table><tbody><tr><th class="caption">Year</th><td><ul><li class="li tyear"><!--[if IE 6]><a class="li" href="javascript:;"><table><tr><td><![endif]--><a href="javascript:;"><span class="selected">2011</span></a><ul><li class="li"><a class="" title="2009" href="javascript:;">2009</a></li><li class="li"><a class="" title="2010" href="javascript:;">2010</a></li><li class="li"><a class="selected" title="2011" href="javascript:;">2011</a></li><li class="li"><a class="" title="2012" href="javascript:;">2012</a></li><li class="li"><a class="" title="2013" href="javascript:;">2013</a></li><li class="li"><a class="" title="2014" href="javascript:;">2014</a></li></ul><!--[if IE 6]></td></tr></table></a><![endif]--></li></ul></td><th class="caption">Month</th><td class="month"><a title="1" href="javascript:;"><span class="">Jan</span></a><a title="2" href="javascript:;"><span class="">Feb</span></a><a title="3" href="javascript:;"><span class="">Mar</span></a><a title="4" href="javascript:;"><span class="">Apr</span></a><a title="5" href="javascript:;"><span class="">May</span></a><a title="6" href="javascript:;"><span class="">Jun</span></a><a title="7" href="javascript:;"><span class="">Jul</span></a><a title="8" href="javascript:;"><span class="">Aug</span></a><a title="9" href="javascript:;"><span class="">Sep</span></a><a title="10" href="javascript:;"><span class="">Oct</span></a><a title="11" href="javascript:;"><span class="selected">Nov</span></a><a title="12" href="javascript:;"><span class="">Dec</span></a></td></tr></tbody></table></div>
-	<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/insert?keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=550&amp;width=800" class="thickbox" id="proc-insert" title="月報模組--新增紀錄">新增斷線紀錄</a>
+	<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/insert?keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=550&amp;width=800" class="thickbox" id="proc-insert" title="月報模組--新增紀錄">新增斷線紀錄</a>
 </span>					
 				<div id="content"><!--主要內容區塊：<BR />-->
 					<div id="content-broke">
@@ -111,7 +71,7 @@ $(function(){
 		<td align="center" id="1090-stopType">網路</td>
 		<td id="1090-stopReason">更新兩校區核心交換器</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1090&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1090">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1090&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1090">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -124,7 +84,7 @@ $(function(){
 		<td align="center" id="1091-stopType">網路</td>
 		<td id="1091-stopReason">更新寵惠堂 無線網路設備</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1091&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1091">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1091&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1091">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -137,7 +97,7 @@ $(function(){
 		<td align="center" id="1092-stopType">網路</td>
 		<td id="1092-stopReason">更新文化樓 無線網路設備</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1092&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1092">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1092&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1092">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -150,7 +110,7 @@ $(function(){
 		<td align="center" id="1093-stopType">網路</td>
 		<td id="1093-stopReason">更新超庸館 無線網路設備</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1093&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1093">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1093&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1093">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -163,7 +123,7 @@ $(function(){
 		<td align="center" id="1094-stopType">網路</td>
 		<td id="1094-stopReason">更新愛徒樓 無線網路設備</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1094&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1094">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1094&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1094">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -176,7 +136,7 @@ $(function(){
 		<td align="center" id="1095-stopType">網路</td>
 		<td id="1095-stopReason">更新哲生樓 無線網路設備</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1095&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1095">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1095&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1095">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -189,7 +149,7 @@ $(function(){
 		<td align="center" id="1096-stopType">網路</td>
 		<td id="1096-stopReason">更新招待所光纖線路</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1096&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1096">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1096&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1096">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -202,7 +162,7 @@ $(function(){
 		<td align="center" id="1097-stopType">網路</td>
 		<td id="1097-stopReason">網路設備故障</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1097&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1097">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1097&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1097">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -215,7 +175,7 @@ $(function(){
 		<td align="center" id="1098-stopType">網路</td>
 		<td id="1098-stopReason">網路設備故障</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1098&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1098">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1098&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1098">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -228,7 +188,7 @@ $(function(){
 		<td align="center" id="1099-stopType">網路</td>
 		<td id="1099-stopReason">網路設備線路接觸不良</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1099&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1099">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1099&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1099">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -241,7 +201,7 @@ $(function(){
 		<td align="center" id="1100-stopType">伺服器故障、擴充、維修</td>
 		<td id="1100-stopReason">webmail設備故障</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1100&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1100">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1100&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1100">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -254,7 +214,7 @@ $(function(){
 		<td align="center" id="1101-stopType">伺服器故障、擴充、維修</td>
 		<td id="1101-stopReason">垃圾信防禦系統硬體故障</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1101&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1101">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1101&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1101">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -267,7 +227,7 @@ $(function(){
 		<td align="center" id="1102-stopType">伺服器故障、擴充、維修</td>
 		<td id="1102-stopReason">網域名稱伺服器異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1102&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1102">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1102&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1102">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -280,7 +240,7 @@ $(function(){
 		<td align="center" id="1123-stopType">網路</td>
 		<td id="1123-stopReason">更換第四大樓 無線網路設備</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1123&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1123">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1123&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1123">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -293,7 +253,7 @@ $(function(){
 		<td align="center" id="1124-stopType">網路</td>
 		<td id="1124-stopReason">更換崇基樓 無線網路設備</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1124&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1124">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1124&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1124">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -306,7 +266,7 @@ $(function(){
 		<td align="center" id="1125-stopType">網路</td>
 		<td id="1125-stopReason">更換第六大樓 無線網路設備</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1125&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1125">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1125&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1125">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -319,7 +279,7 @@ $(function(){
 		<td align="center" id="1126-stopType">網路</td>
 		<td id="1126-stopReason">更換第三大樓 無線網路設備</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1126&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1126">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1126&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1126">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -332,7 +292,7 @@ $(function(){
 		<td align="center" id="1127-stopType">網路</td>
 		<td id="1127-stopReason">更換崇基樓 無線網路設備光纖線</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1127&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1127">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1127&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1127">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -345,7 +305,7 @@ $(function(){
 		<td align="center" id="1128-stopType">網路</td>
 		<td id="1128-stopReason">更換城中校區無線網路認證閘道器</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1128&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1128">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1128&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1128">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -358,7 +318,7 @@ $(function(){
 		<td align="center" id="1129-stopType">網路</td>
 		<td id="1129-stopReason">更換城中校區無線網路認證閘道器</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1129&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1129">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1129&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1129">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -371,7 +331,7 @@ $(function(){
 		<td align="center" id="1130-stopType">伺服器故障、擴充、維修</td>
 		<td id="1130-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1130&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1130">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1130&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1130">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -384,7 +344,7 @@ $(function(){
 		<td align="center" id="1131-stopType">伺服器故障、擴充、維修</td>
 		<td id="1131-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1131&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1131">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1131&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1131">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -397,7 +357,7 @@ $(function(){
 		<td align="center" id="1132-stopType">伺服器故障、擴充、維修</td>
 		<td id="1132-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1132&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1132">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1132&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1132">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -410,7 +370,7 @@ $(function(){
 		<td align="center" id="1133-stopType">伺服器故障、擴充、維修</td>
 		<td id="1133-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1133&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1133">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1133&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1133">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -423,7 +383,7 @@ $(function(){
 		<td align="center" id="1134-stopType">伺服器故障、擴充、維修</td>
 		<td id="1134-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1134&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1134">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1134&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1134">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -436,7 +396,7 @@ $(function(){
 		<td align="center" id="1135-stopType">伺服器故障、擴充、維修</td>
 		<td id="1135-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1135&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1135">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1135&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1135">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -449,7 +409,7 @@ $(function(){
 		<td align="center" id="1136-stopType">伺服器故障、擴充、維修</td>
 		<td id="1136-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1136&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1136">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1136&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1136">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -462,7 +422,7 @@ $(function(){
 		<td align="center" id="1137-stopType">伺服器故障、擴充、維修</td>
 		<td id="1137-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1137&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1137">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1137&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1137">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -475,7 +435,7 @@ $(function(){
 		<td align="center" id="1138-stopType">伺服器故障、擴充、維修</td>
 		<td id="1138-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1138&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1138">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1138&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1138">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -488,7 +448,7 @@ $(function(){
 		<td align="center" id="1139-stopType">伺服器故障、擴充、維修</td>
 		<td id="1139-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1139&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1139">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1139&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1139">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -501,7 +461,7 @@ $(function(){
 		<td align="center" id="1140-stopType">伺服器故障、擴充、維修</td>
 		<td id="1140-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1140&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1140">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1140&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1140">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -514,7 +474,7 @@ $(function(){
 		<td align="center" id="1141-stopType">伺服器故障、擴充、維修</td>
 		<td id="1141-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1141&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1141">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1141&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1141">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -527,7 +487,7 @@ $(function(){
 		<td align="center" id="1142-stopType">伺服器故障、擴充、維修</td>
 		<td id="1142-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1142&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1142">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1142&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1142">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -540,7 +500,7 @@ $(function(){
 		<td align="center" id="1143-stopType">伺服器故障、擴充、維修</td>
 		<td id="1143-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1143&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1143">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1143&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1143">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -553,7 +513,7 @@ $(function(){
 		<td align="center" id="1144-stopType">伺服器故障、擴充、維修</td>
 		<td id="1144-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1144&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1144">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1144&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1144">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -566,7 +526,7 @@ $(function(){
 		<td align="center" id="1145-stopType">伺服器故障、擴充、維修</td>
 		<td id="1145-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1145&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1145">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1145&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1145">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>
@@ -579,7 +539,7 @@ $(function(){
 		<td align="center" id="1146-stopType">伺服器故障、擴充、維修</td>
 		<td id="1146-stopReason">網頁服務異常</td>
 		<td align="center">
-			<a href="http://divisionwork.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1146&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1146">
+			<a href="http://oas.cc.scu.edu.tw/oas/month/brokepoint/detailtable?brokeid=1146&amp;keepThis=true&amp;modal=true&amp;TB_iframe=true&amp;height=500&amp;width=500" class="thickbox" title="斷線紀錄--詳細內容" id="detail-1146">
 		細節</a>&nbsp;
 		<!--2010-02-24 k1 加入判斷是否為原發佈者才開啟「修改與刪除」-->
 				</td>

@@ -9,22 +9,29 @@ $(function(){
 
 <!-- 2011-11-10 預設模組各個Action Views內容架構 -->
 
-<div id="content">
-	有產生Zend_Views!test
-	<form action="post" name="login1" method="post">
-	
-	<p>
-	帳號：<input name="account"type="text" value="輸入帳號"/>
-	</p>
-	<p>
-	密碼：<input name="pwd" type="password" />
-	</p>
-	<input type="reset" value="送出" name="submit1"/>
-	<input type="submit" value="清除" name="reset1"/>
-	</form>
+<body>
+ 
+<h1><?php echo $this->escape($this->title); ?></h1>
+<?php if(!empty($this->message)):?>
+<div id="message">
+<?php echo $this->escape($this->message);?>
 </div>
-<?
- echo $this
-?>
+<?php endif; ?>
+<form action="" method="post">
+<div>
+<label for="username">Username</label>
+<input type="text" name="username" value=""/>
+</div>
+<div>
+<label for="password">Password</label>
+<input type="password" name="password" value=""/>
+</div>
+<div id="formbutton">
+<input type="submit" name="login" value="Login" />
+</div>
+</form>
+ 
+</body>
+
 
 </html>

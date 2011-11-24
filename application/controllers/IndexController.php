@@ -20,12 +20,12 @@ class IndexController extends Zend_Controller_Action
 {
 
 	private $_logger;
-	
+
 	function init()
 	{
 		$this->_logger = $this->getInvokeArg('bootstrap')->getResource('logger');
 	}
-	
+
 
 	/**
 	 * position:系統首頁畫面
@@ -33,13 +33,21 @@ class IndexController extends Zend_Controller_Action
 	 */	
     public function indexAction()	
     {
+    	if ($this->_request->isPost()) {
+			$f = new Zend_Filter_StripTags();
+		    $username =$f->filter($this->_request->getPost('username'));
+		    $password =$f->filter($this->_request->getPost('password'));
+			
+		
     	
-		echo "";
+		if(empty($username)){
+				$this->view->message='enter the name';
+    	
 		
-		
+		}}
     }
 
-	
+
 	/** 
 	 * feature::先紀錄登出狀態後再進行清除動作
 	 */
@@ -47,13 +55,13 @@ class IndexController extends Zend_Controller_Action
 	{
 		//Step1. 紀錄目前使用者登出紀錄！
 		$this->_logger->info('使用者登出成功！');
-				
+
 		//Step2. 清除Session資訊
 		Zend_Session::destroy(true);
-		
+
 		//Step3. 回到首頁
 		$this->_redirect('/');
 	}
-	
+
 }
 ?>
