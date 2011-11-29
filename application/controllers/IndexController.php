@@ -31,30 +31,58 @@ class IndexController extends Zend_Controller_Action
 	 * position:系統首頁畫面
 	 * feature::登入、顯示登入表單功能
 	 */	
-    public function indexAction()	
-    {
-    	//creat login form
+	 
+	 private function loginForm()
+	 {
+	 	//creat login form
     	$form=new Zend_Form();
-		$form->setAction('logout');
+		$form->setAction('login');
 		$form->setMethod('post');
 		$form->setDescription("enter the account");
+		
 		
 		//username
 		$form->addElement('text', 'username');
         $usernameElement = $form->getElement('username');
-	    $usernameElement = $form->setName('user');
+	  	$usernameElement->setLabel('帳號:');
        
 		//password
 		$form->addElement('password','password');
 		$passwordElement = $form->getElement('password');
+	    $passwordElement->setLabel('密碼:');
 		
 		//submit
 		$form->addElement('submit','submit');
 		$submitButton = $form->getElement('submit');
-	
+		$submitButton->setLabel('登入');
 		
+	
+		return $form;
+		
+		 
+	 }
+    public function indexAction()	
+    {
+    	$form = $this->loginForm();
 		$this->view->form=$form;
     }
+	//login
+	public function loginAction()
+	{
+		$form = $this->loginForm();
+		
+		if ($form->isValid($_POST)) {
+			$username=$form->getValue('username');
+			$password=$form->getValue('password');
+			
+			
+		} else {
+			
+			
+		}
+		
+		
+	}
 
 
 	/** 
