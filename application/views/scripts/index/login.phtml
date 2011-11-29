@@ -6,14 +6,24 @@
 <body>
 
 <h3>Account Sign up</h3>
+
+
+
 <?php
 if($this->errors){
 	
 echo $this->form;
 }else{
-echo "Thank you! You are one step closer
-to becoming a full member.";
+echo "登入成功.";
 }
+
 ?>
+<ul class="nav_modules">
+					<li class="frist" id="Wk">
+					<a href="../week/manage/index"><img border="0" alt="週報" src="../public/img/btnHovWk.png"></a></li>
+					<li id="Mt">
+					<a href="../month/manage/temp"><img border="0" alt="月報" src="../public/img/btnHovMt.png"></a></li></ul>
+					
+					</body>
 </body>
 </html>

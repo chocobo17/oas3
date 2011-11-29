@@ -81,6 +81,7 @@ class IndexController extends Zend_Controller_Action
 			$password=$form->getValue("password");
 			
 			
+			
 		} else {
 			
 			
@@ -93,10 +94,7 @@ class IndexController extends Zend_Controller_Action
 	/** 
 	 * feature::先紀錄登出狀態後再進行清除動作
 	 */
-	public function menuAction()
-	{
-		
-	}
+	
 	public function logoutAction()
 	{
 		//Step1. 紀錄目前使用者登出紀錄！
