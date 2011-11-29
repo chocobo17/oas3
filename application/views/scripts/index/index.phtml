@@ -1,11 +1,8 @@
-<html>
+<?php echo $this->doctype('XHTML1_STRICT'); ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <style type="text/css">
 </style>
-<script type="text/javascript">
-$(function(){
-});
 
-</script>
 
 <!-- 2011-11-10 預設模組各個Action Views內容架構 -->
 
@@ -13,23 +10,14 @@ $(function(){
  
 <h1><?php echo $this->escape($this->title); ?></h1>
 <?php if(!empty($this->message)):?>
-<div id="message">
+	
+
 <?php echo $this->escape($this->message);?>
-</div>
+
+
 <?php endif; ?>
-<form action="" method="post">
-<div>
-<label for="username">Username</label>
-<input type="text" name="username" value=""/>
-</div>
-<div>
-<label for="password">Password</label>
-<input type="password" name="password" value=""/>
-</div>
-<div id="formbutton">
-<input type="submit" name="login" value="Login" />
-</div>
-</form>
+<?php echo $this->form; ?>
+
  
 </body>
 

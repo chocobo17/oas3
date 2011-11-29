@@ -33,18 +33,27 @@ class IndexController extends Zend_Controller_Action
 	 */	
     public function indexAction()	
     {
-    	if ($this->_request->isPost()) {
-			$f = new Zend_Filter_StripTags();
-		    $username =$f->filter($this->_request->getPost('username'));
-		    $password =$f->filter($this->_request->getPost('password'));
-			
+    	//creat login form
+    	$form=new Zend_Form();
+		$form->setAction('logout');
+		$form->setMethod('post');
+		$form->setDescription("enter the account");
 		
-    	
-		if(empty($username)){
-				$this->view->message='enter the name';
-    	
+		//username
+		$form->addElement('text', 'username');
+        $usernameElement = $form->getElement('username');
+	    $usernameElement = $form->setName('user');
+       
+		//password
+		$form->addElement('password','password');
+		$passwordElement = $form->getElement('password');
 		
-		}}
+		//submit
+		$form->addElement('submit','submit');
+		$submitButton = $form->getElement('submit');
+	
+		
+		$this->view->form=$form;
     }
 
 
