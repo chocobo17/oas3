@@ -43,6 +43,7 @@ class AjaxController extends Zend_Controller_Action
 		else{
     	
 		$adapter = new Zend_Auth_Adapter_DbTable();
+			
 		
 		$adapter->setTableName('user')
 				->setIdentityColumn('userId')

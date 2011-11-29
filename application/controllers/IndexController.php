@@ -32,48 +32,53 @@ class IndexController extends Zend_Controller_Action
 	 * feature::登入、顯示登入表單功能
 	 */	
 	 
-	 private function loginForm()
+	 private function getloginForm()
 	 {
 	 	//creat login form
     	$form=new Zend_Form();
 		$form->setAction('login');
 		$form->setMethod('post');
 		$form->setDescription("enter the account");
+		$form->setName('getloginform');
 		
 		
 		//username
 		$form->addElement('text', 'username');
         $usernameElement = $form->getElement('username');
 	  	$usernameElement->setLabel('帳號:');
+		$usernameElement->setRequired(TRUE);
        
 		//password
 		$form->addElement('password','password');
 		$passwordElement = $form->getElement('password');
 	    $passwordElement->setLabel('密碼:');
+		$passwordElement->setRequired(TRUE);
 		
 		//submit
 		$form->addElement('submit','submit');
 		$submitButton = $form->getElement('submit');
 		$submitButton->setLabel('登入');
 		
-	
 		return $form;
+	
+		
 		
 		 
 	 }
     public function indexAction()	
     {
-    	$form = $this->loginForm();
-		$this->view->form=$form;
+    	
+		
+		$this->view->form=$this->getloginForm();
     }
-	//login
+	//login un finish
 	public function loginAction()
 	{
-		$form = $this->loginForm();
+		$form = $this->getloginForm();
 		
 		if ($form->isValid($_POST)) {
-			$username=$form->getValue('username');
-			$password=$form->getValue('password');
+			$username=$form->getValue("username");
+			$password=$form->getValue("password");
 			
 			
 		} else {
@@ -88,6 +93,10 @@ class IndexController extends Zend_Controller_Action
 	/** 
 	 * feature::先紀錄登出狀態後再進行清除動作
 	 */
+	public function menuAction()
+	{
+		
+	}
 	public function logoutAction()
 	{
 		//Step1. 紀錄目前使用者登出紀錄！
