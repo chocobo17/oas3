@@ -30,13 +30,7 @@ class Month_ManageController extends Zend_Controller_Action
 	 * called by::
 	 * /month/xxxx/xxxxx 
 	 */
-	public function tempAction()
-	{
-		Zend_Debug::dump($_REQUEST);
-		// Zend_Debug::dump($this->getRequest());
-		Zend_Debug::dump($this->getRequest()->getParams());
-		
-	}
+
 	public function brokepointAction()
 	{
 		

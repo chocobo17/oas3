@@ -25,9 +25,7 @@ class Week_ManageController extends Zend_Controller_Action
 	 * called by::
 	 * /month/xxxx/xxxxx 
 	 */
-	public function tempAction()
-	{
-	}
+	
 	public function indexAction()
 	{
 	}

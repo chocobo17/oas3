@@ -14,13 +14,10 @@
 class Month_PorcessController extends Zend_Controller_Action
 {
 	private $_logger;
-	private $_config;
-	
 	
 	function init()
 	{
 		$this->_logger = $this->getInvokeArg('bootstrap')->getResource('logger');
-		$this->_config = new Application_Model_Configure();
 	}    
 	
 	/**
@@ -30,7 +27,6 @@ class Month_PorcessController extends Zend_Controller_Action
 	 */
 	public function tempAction()
 	{
-		$this->_config->fetchAll();
 	}
 	public function indexAction()
 	{
