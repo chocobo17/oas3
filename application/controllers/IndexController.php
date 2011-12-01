@@ -20,10 +20,13 @@ class IndexController extends Zend_Controller_Action
 {
 
 	private $_logger;
-
+	private $_db;
+    private $_config;
 	function init()
 	{
 		$this->_logger = $this->getInvokeArg('bootstrap')->getResource('logger');
+		$this->_config = new Application_Model_Configure();
+		$this->_db =$this->_config->getDefaultAdapter();
 	}
 
 
@@ -36,7 +39,7 @@ class IndexController extends Zend_Controller_Action
 	 {
 	 	//creat login form
     	$form=new Zend_Form();
-		$form->setAction('login');
+		$form->setAction('/oas/index/login');
 		$form->setMethod('post');
 		$form->setDescription("enter the account");
 		$form->setName('getloginform');
@@ -65,6 +68,8 @@ class IndexController extends Zend_Controller_Action
 		
 		 
 	 }
+	 
+	 
     public function indexAction()	
     {
     	
@@ -75,6 +80,8 @@ class IndexController extends Zend_Controller_Action
 	public function loginAction()
 	{
 		$form = $this->getloginForm();
+		
+		
 		
 		if ($form->isValid($_POST)) {
 			$username=$form->getValue("username");
