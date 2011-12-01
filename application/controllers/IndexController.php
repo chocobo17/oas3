@@ -21,12 +21,12 @@ class IndexController extends Zend_Controller_Action
 
 	private $_logger;
 	private $_db;
-    private $_config;
+
 	function init()
 	{
 		$this->_logger = $this->getInvokeArg('bootstrap')->getResource('logger');
-		$this->_config = new Application_Model_Configure();
-		$this->_db =$this->_config->getDefaultAdapter();
+		$this->_db = new Application_Model_Configure();
+
 	}
 
 
@@ -75,6 +75,8 @@ class IndexController extends Zend_Controller_Action
     	
 		
 		$this->view->form=$this->getloginForm();
+		
+		
     }
 	//login un finish
 	public function loginAction()
