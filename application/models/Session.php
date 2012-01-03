@@ -12,7 +12,7 @@
  
 class Application_Model_Session extends Zend_Db_Table_Abstract
 {
-	protected $_name = 'apps_session';
+	protected $_name = 'apps_session'; 
 	protected $_primary = 'id';
 	
 	public function save($data) {

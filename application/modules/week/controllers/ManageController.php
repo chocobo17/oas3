@@ -18,6 +18,7 @@ class Week_ManageController extends Zend_Controller_Action
 	function init()
 	{
 		$this->_logger = $this->getInvokeArg('bootstrap')->getResource('logger');
+		
 	}    
 	
 	/**
@@ -25,9 +26,15 @@ class Week_ManageController extends Zend_Controller_Action
 	 * called by::
 	 * /month/xxxx/xxxxx 
 	 */
+	public function testAction()
+	{
+		echo "12345456666";
+	}
 	
 	public function indexAction()
 	{
+		
+		
 	}
 	public function previewAction()
 	{
@@ -37,6 +44,7 @@ class Week_ManageController extends Zend_Controller_Action
 	}
 	public function advqueryAction()
 	{
+		
 	}
 }
 ?>
